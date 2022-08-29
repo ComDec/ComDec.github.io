@@ -1,5 +1,6 @@
 ---
-layout: archive-years
+layout: tag
 title: Research
 permalink: /research/
 ---
+

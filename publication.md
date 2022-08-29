@@ -1,6 +1,7 @@
 ---
 layout: archive-taxonomies
 type: tags
-title: Publication
-permalink: /publication/
+title: Research
+permalink: /research/
 ---
+
