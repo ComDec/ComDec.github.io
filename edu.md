@@ -1,6 +1,6 @@
 ---
 layout: archive-taxonomies
 type: categories
-title: Categories
-permalink: /categories/
+title: Education
+permalink: /edu/
 ---

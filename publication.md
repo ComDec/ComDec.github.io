@@ -1,6 +1,6 @@
 ---
 layout: archive-taxonomies
 type: tags
-title: Tags
-permalink: /tags/
+title: Publication
+permalink: /publication/
 ---
