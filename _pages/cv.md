@@ -11,6 +11,10 @@ redirect_from:
 
 Education
 ======
+* Ph.D. in Computer Science, New York University, 2030 (expected)
+  * Advisor: Prof. Shengjie Wang
+  * Research interests: Large Language Models, Generative Models, Computational Chemistry, Bioinformatics
+* M.S. in Computational Chemistry, Shanghai Jiao Tong University, 2024
 * B.S. in Bioinformatics, Shanghai Jiao Tong University, 2023
 
 Work experience

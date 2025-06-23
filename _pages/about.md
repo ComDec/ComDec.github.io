@@ -7,9 +7,8 @@ redirect_from:
   - /about.html
 ---
 
-Hi there! My name is **Xi Wang**. Currently, I am a research assistant at the Courant Institute, New York University, working under the supervision of Shengjie Wang. My research interests lie in developing innovative machine learning models to tackle scientific challenges, particularly in the fields of biology and chemistry. I'm also interested some classic topics in machine learning, such as **explainability** and **hallucination**.
+Hi there! My name is **Xi Wang**. Currently, I am a PhD student at the Courant Institute in New York University and NYU Shanghai, working under the supervision of Shengjie Wang. My research interests lie in developing innovative machine learning models (Generative Models) to tackle scientific challenges, particularly in the fields of biology and chemistry.
 
-**I am actively seeking Ph.D. opportunities in the field of AI for Science.** Please feel free to reach out if you have any suggestions or opportunities to share!
 
 # Research Interest
 
