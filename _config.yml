@@ -12,7 +12,7 @@ title                    : "Xi Wang"
 title_separator          : "-"
 name                     : &name "Xi Wang"
 description              : &description "CS PhD student at NYU Courant. Generative models for molecules, RNA, and proteins (diffusion, LLM pretraining, GFlowNet/RL post-training)."
-url                      : https://ComDec.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : https://comdec.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "ComDec/ComDec.github.io"
 
