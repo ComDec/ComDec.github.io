@@ -15,6 +15,62 @@
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
 </script>
 
+<script>
+(function() {
+  var root = document.documentElement;
+
+  // Theme init as early as possible to prevent flashes.
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) { saved = null; }
+
+  var prefersDark = false;
+  try { prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; } catch (e) { prefersDark = false; }
+
+  var theme = saved || 'dark';
+  if (theme === 'auto') theme = prefersDark ? 'dark' : 'light';
+  if (theme !== 'dark' && theme !== 'light') theme = 'dark';
+  root.classList.remove('dark', 'light');
+  root.classList.add(theme);
+
+  // Intro init (home only). Default: show once per tab (sessionStorage).
+  var isHome = {% if page.url == '/' %}true{% else %}false{% endif %};
+  if (!isHome) return;
+
+  try {
+    var qs = window.location && window.location.search ? window.location.search : '';
+    var forceSkip = /(?:^|[?&])intro=0(?:&|$)/.test(qs);
+    var forceShow = /(?:^|[?&])intro=1(?:&|$)/.test(qs);
+
+    if (forceSkip) {
+      root.classList.add('ef-intro-skip');
+      return;
+    }
+
+    if (!forceShow) {
+      try {
+        if (sessionStorage.getItem('ef_intro_seen') === '1') {
+          root.classList.add('ef-intro-skip');
+          return;
+        }
+      } catch (e) {
+        /* no-op */
+      }
+    }
+  } catch (e) {
+    /* no-op */
+  }
+
+  root.classList.add('ef-intro-show');
+})();
+</script>
+
+<style>
+  /* Prevent intro overlay flashes; shown only when ef-intro-show is set early in <head>. */
+  #theme-endspace #ef-boot { display: none !important; }
+  html.ef-intro-show #theme-endspace #ef-boot { display: block !important; }
+  html.ef-intro-show { overflow: hidden; }
+</style>
+
 <!-- For all browsers -->
 <link rel="stylesheet" href="{{ base_path }}/assets/css/main.css">
 

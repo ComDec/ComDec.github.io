@@ -21,6 +21,8 @@
     root.classList.remove('ef-boot-lock');
     root.classList.remove('ef-intro-show');
     root.classList.add('ef-intro-skip');
+
+    try { sessionStorage.setItem('ef_intro_seen', '1'); } catch (e) {}
   }
 
   function startWipe() {
@@ -28,11 +30,22 @@
     wiping = true;
     boot.classList.add('is-wipe');
 
-    var wipeMs = reduce ? 520 : 1000;
+    var page = boot.querySelector('.ef-boot__wipePage');
+    // Keep in sync with CSS (fill + hold + flip)
+    var wipeMs = reduce ? 1400 : 2400;
 
-    window.setTimeout(function() {
+    var fallback = window.setTimeout(function() {
       finish();
     }, wipeMs);
+
+    if (page) {
+      page.addEventListener('animationend', function(e) {
+        if (e.target !== page) return;
+        if (e.animationName !== 'ef-intro-lift') return;
+        window.clearTimeout(fallback);
+        finish();
+      }, { once: true });
+    }
   }
 
   boot.hidden = false;

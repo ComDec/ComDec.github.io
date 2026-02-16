@@ -1,14 +1,43 @@
 <div id="ef-boot" class="ef-boot">
   <div class="ef-boot__bg" aria-hidden="true">
     <div class="ef-boot__contours"></div>
+    <div class="ef-boot__hairlines"></div>
+    <div class="ef-boot__conduits"></div>
+    <div class="ef-boot__grain"></div>
+
+    <div class="ef-boot__glyphs" aria-hidden="true">
+      <div class="ef-boot__line" style="--x: 18%; --y: 54%; --w: 44vw; --r: 0deg;"></div>
+      <div class="ef-boot__line" style="--x: 72%; --y: 30%; --w: 28vw; --r: 0deg;"></div>
+      <div class="ef-boot__line" style="--x: 64%; --y: 74%; --w: 32vw; --r: 0deg;"></div>
+
+      <div class="ef-boot__diamond" style="--x: 16%; --y: 18%; --s: 72px;"></div>
+      <div class="ef-boot__diamond" style="--x: 84%; --y: 62%; --s: 54px;"></div>
+      <div class="ef-boot__diamond ef-boot__diamond--solid" style="--x: 78%; --y: 18%; --s: 26px;"></div>
+
+      <div class="ef-boot__tri" style="--x: 86%; --y: 22%; --s: 22px;"></div>
+      <div class="ef-boot__tri ef-boot__tri--hollow" style="--x: 24%; --y: 78%; --s: 18px;"></div>
+    </div>
   </div>
 
-  <div class="ef-boot__name" aria-hidden="true">{{ site.title | default: "NAME" }}</div>
-
   <div class="ef-boot__wipe" aria-hidden="true">
-    <div class="ef-boot__wipeText">
-      <div class="ef-boot__wipeKicker">LINK / OPEN</div>
-      <div class="ef-boot__wipeName">{{ site.title | default: "NAME" }}</div>
+    <div class="ef-boot__wipePage" aria-hidden="true">
+      <div class="ef-boot__wipeGlyphs" aria-hidden="true">
+        <div class="ef-boot__wipeLine" style="--x: 22%; --y: 22%; --w: 26vw; --r: 0deg;"></div>
+        <div class="ef-boot__wipeLine" style="--x: 70%; --y: 72%; --w: 34vw; --r: 0deg;"></div>
+
+        <div class="ef-boot__wipeDiamond" style="--x: 18%; --y: 28%; --s: 64px;"></div>
+        <div class="ef-boot__wipeDiamond" style="--x: 62%; --y: 56%; --s: 46px;"></div>
+        <div class="ef-boot__wipeDiamond ef-boot__wipeDiamond--solid" style="--x: 86%; --y: 18%; --s: 26px;"></div>
+      </div>
+
+      <div class="ef-boot__wipeText">
+        <div class="ef-boot__wipeKicker">LINK / OPEN</div>
+        <div class="ef-boot__wipeName">{{ site.title | default: "NAME" }}</div>
+      </div>
+
+      <div class="ef-boot__wipeGuide" aria-hidden="true">
+        <div class="ef-boot__wipeBigTri" aria-hidden="true"></div>
+      </div>
     </div>
   </div>
 </div>

@@ -838,6 +838,64 @@ html.no-js #theme-endspace #ef-boot {
   pointer-events: none;
 }
 
+#theme-endspace #ef-boot .ef-boot__glyphs {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.72;
+  mix-blend-mode: overlay;
+}
+
+#theme-endspace #ef-boot .ef-boot__line {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: var(--w, 40vw);
+  height: 1px;
+  transform: translate3d(-50%, -50%, 0) rotate(var(--r, 0deg));
+  transform-origin: 0 50%;
+  background:
+    linear-gradient(90deg, rgba(236, 242, 248, 0.0) 0%, rgba(236, 242, 248, 0.26) 16%, rgba(236, 242, 248, 0.12) 82%, rgba(236, 242, 248, 0.0) 100%);
+}
+
+#theme-endspace #ef-boot .ef-boot__diamond {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: var(--s, 64px);
+  height: var(--s, 64px);
+  transform: translate3d(-50%, -50%, 0) rotate(45deg);
+  border: 1px solid rgba(236, 242, 248, 0.28);
+  border-radius: 8px;
+  background: rgba(236, 242, 248, 0.03);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.20) inset;
+}
+
+#theme-endspace #ef-boot .ef-boot__diamond--solid {
+  border-color: rgba(236, 242, 248, 0.22);
+  background:
+    linear-gradient(135deg, rgba(236, 242, 248, 0.16), rgba(236, 242, 248, 0.02));
+}
+
+#theme-endspace #ef-boot .ef-boot__tri {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: 0;
+  height: 0;
+  transform: translate3d(-50%, -50%, 0);
+  border-left: calc(var(--s, 22px) * 0.5) solid transparent;
+  border-right: calc(var(--s, 22px) * 0.5) solid transparent;
+  border-top: calc(var(--s, 22px) * 0.86) solid rgba(236, 242, 248, 0.20);
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.28));
+}
+
+#theme-endspace #ef-boot .ef-boot__tri--hollow {
+  border-top-color: rgba(236, 242, 248, 0.10);
+  opacity: 0.72;
+}
+
 #theme-endspace #ef-boot .ef-boot__name {
   position: absolute;
   left: clamp(1rem, 4vw, 4rem);
@@ -1070,14 +1128,61 @@ html.no-js #theme-endspace #ef-boot {
   position: absolute;
   inset: 0;
   z-index: 6;
-  transform: scaleX(0);
-  transform-origin: left;
   opacity: 0;
-  will-change: transform;
-  background: #fbfb45;
+  clip-path: inset(0 100% 0 0);
+  will-change: clip-path;
+  pointer-events: none;
+  perspective: 1200px;
 }
 
-#theme-endspace #ef-boot .ef-boot__wipe::before {
+#theme-endspace #ef-boot .ef-boot__wipePage {
+  position: absolute;
+  inset: 0;
+  background: #fbfb45;
+  transform: translate3d(0, 0, 0);
+  transform-origin: 50% 0%;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+#theme-endspace #ef-boot .ef-boot__wipeGlyphs {
+  position: absolute;
+  inset: 0;
+  opacity: 0.28;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+#theme-endspace #ef-boot .ef-boot__wipeLine {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: var(--w, 40vw);
+  height: 1px;
+  transform: translate3d(-50%, -50%, 0) rotate(var(--r, 0deg));
+  transform-origin: 0 50%;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.58) 18%, rgba(0, 0, 0, 0.18) 82%, rgba(0, 0, 0, 0.0) 100%);
+}
+
+#theme-endspace #ef-boot .ef-boot__wipeDiamond {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: var(--s, 56px);
+  height: var(--s, 56px);
+  transform: translate3d(-50%, -50%, 0) rotate(45deg);
+  border: 1px solid rgba(0, 0, 0, 0.55);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+#theme-endspace #ef-boot .ef-boot__wipeDiamond--solid {
+  border-color: rgba(0, 0, 0, 0.48);
+  background: rgba(0, 0, 0, 0.14);
+}
+
+#theme-endspace #ef-boot .ef-boot__wipePage::before {
   content: "";
   position: absolute;
   inset: -12vh -12vw;
@@ -1085,15 +1190,20 @@ html.no-js #theme-endspace #ef-boot {
     url("/images/patterns/contours-only-ink.svg"),
     url("/images/patterns/contours-only-ink.svg"),
     url("/images/patterns/contours-only-ink.svg"),
-    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.10) 0 1px, transparent 1px 96px);
-  background-repeat: repeat, repeat, repeat, repeat;
-  background-size: 720px 720px, 360px 360px, 240px 240px, auto;
-  background-position: 0 0, 180px 120px, 40px 60px, 0 0;
-  opacity: 0.26;
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0 1px, transparent 1px 96px),
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.10) 0 1px, transparent 1px 30px),
+    repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.09) 0 1px, transparent 1px 30px),
+    radial-gradient(circle at 18% 28%, rgba(0, 0, 0, 0.16) 0 1.6px, transparent 2.3px),
+    radial-gradient(circle at 74% 46%, rgba(0, 0, 0, 0.14) 0 1.4px, transparent 2.1px),
+    radial-gradient(circle at 56% 76%, rgba(0, 0, 0, 0.12) 0 1.2px, transparent 2.0px);
+  background-repeat: repeat, repeat, repeat, repeat, repeat, repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 720px 720px, 360px 360px, 240px 240px, auto, auto, auto, auto, auto, auto;
+  background-position: 0 0, 180px 120px, 40px 60px, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+  opacity: 0.30;
   mix-blend-mode: multiply;
 }
 
-#theme-endspace #ef-boot .ef-boot__wipe::after {
+#theme-endspace #ef-boot .ef-boot__wipePage::after {
   content: "";
   position: absolute;
   top: -20vh;
@@ -1107,13 +1217,15 @@ html.no-js #theme-endspace #ef-boot {
 
 #theme-endspace #ef-boot .ef-boot__wipeText {
   position: absolute;
-  left: clamp(1rem, 4vw, 4rem);
-  top: 42vh;
+  right: clamp(1rem, 4vw, 4rem);
+  top: 46vh;
   transform: translate3d(0, -50%, 0);
   color: rgba(0, 0, 0, 0.76);
   font-family: var(--es-mono);
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  text-align: right;
+  opacity: 0;
 }
 
 #theme-endspace #ef-boot .ef-boot__wipeKicker {
@@ -1128,20 +1240,122 @@ html.no-js #theme-endspace #ef-boot {
   letter-spacing: 0.22em;
 }
 
-@keyframes ef-intro-wipe {
-  /* Faster takeoff, clearer ease-out */
-  0% { transform: scaleX(0); opacity: 1; }
-  8% { transform: scaleX(0.18); opacity: 1; }
-  42% { transform: scaleX(0.80); opacity: 1; }
-  68% { transform: scaleX(0.94); opacity: 1; }
-  82% { transform: scaleX(0.98); opacity: 1; }
-  92% { transform: scaleX(0.992); opacity: 1; }
-  100% { transform: scaleX(1); opacity: 1; }
+/* Yellow fill (no distortion) + page flip up */
+@keyframes ef-intro-fill {
+  0% { clip-path: inset(0 100% 0 0); opacity: 1; }
+  18% { clip-path: inset(0 82% 0 0); opacity: 1; }
+  54% { clip-path: inset(0 22% 0 0); opacity: 1; }
+  76% { clip-path: inset(0 6% 0 0); opacity: 1; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+
+@keyframes ef-intro-lift {
+  /* Curtain lift: reveal from bottom to top */
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  22% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    transform: translate3d(0, -112%, 0);
+    opacity: 1;
+    filter: blur(0.4px);
+  }
+}
+
+@keyframes ef-intro-textin {
+  0% { opacity: 0; transform: translate3d(10px, -50%, 0); }
+  100% { opacity: 1; transform: translate3d(0, -50%, 0); }
+}
+
+@keyframes ef-intro-guide {
+  0%, 100% { transform: translate3d(-50%, 0, 0); opacity: 0.86; }
+  50% { transform: translate3d(-50%, -6px, 0); opacity: 1; }
+}
+
+#theme-endspace #ef-boot .ef-boot__wipeGuide {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.1rem, 4.5vh, 3rem);
+  transform: translate3d(-50%, 0, 0);
+  display: grid;
+  gap: 0.3rem;
+  justify-items: center;
+  opacity: 0;
+}
+
+#theme-endspace #ef-boot .ef-boot__wipeBigTri {
+  position: relative;
+  width: clamp(88px, 12vw, 152px);
+  height: clamp(74px, 10vw, 128px);
+  background: rgba(0, 0, 0, 0.62);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.26));
+}
+
+#theme-endspace #ef-boot .ef-boot__wipeBigTri::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  width: 74%;
+  height: 74%;
+  transform: translate3d(-50%, 0, 0);
+  background: #fbfb45;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  opacity: 0.92;
+}
+
+#theme-endspace #ef-boot .ef-boot__wipeBigTri::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  width: 74%;
+  height: 74%;
+  transform: translate3d(-50%, 0, 0);
+  background: repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.22) 0 1px, transparent 1px 10px);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  opacity: 0.18;
+  mix-blend-mode: multiply;
 }
 
 #theme-endspace #ef-boot.is-wipe .ef-boot__wipe {
   opacity: 1;
-  animation: ef-intro-wipe 1000ms linear forwards;
+  animation: ef-intro-fill 680ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+#theme-endspace #ef-boot.is-wipe .ef-boot__wipePage {
+  animation: ef-intro-lift 820ms cubic-bezier(0.22, 1, 0.36, 1) 920ms forwards;
+}
+
+#theme-endspace #ef-boot.is-wipe .ef-boot__wipeText {
+  animation: ef-intro-textin 420ms cubic-bezier(0.22, 1, 0.36, 1) 220ms forwards;
+}
+
+#theme-endspace #ef-boot.is-wipe .ef-boot__wipeGuide {
+  opacity: 1;
+  animation: ef-intro-guide 980ms ease-in-out 520ms infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #theme-endspace #ef-boot.is-wipe .ef-boot__wipe {
+    animation-duration: 260ms;
+  }
+  #theme-endspace #ef-boot.is-wipe .ef-boot__wipePage {
+    animation-duration: 520ms;
+    animation-delay: 320ms;
+    animation-name: ef-intro-lift;
+  }
+  #theme-endspace #ef-boot.is-wipe .ef-boot__wipeGuide {
+    animation: none;
+    opacity: 0;
+  }
 }
 
 @media (max-width: 560px) {

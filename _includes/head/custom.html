@@ -7,57 +7,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Theme init (avoid flash) -->
-<script>
-(function() {
-  var saved = null;
-  try {
-    saved = localStorage.getItem('theme');
-  } catch (e) {
-    saved = null;
-  }
-
-  var prefersDark = false;
-  try {
-    prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  } catch (e) {
-    prefersDark = false;
-  }
-
-  var theme = saved || 'dark';
-  if (theme === 'auto') theme = prefersDark ? 'dark' : 'light';
-  if (theme !== 'dark' && theme !== 'light') theme = 'dark';
-  var root = document.documentElement;
-  root.classList.remove('dark', 'light');
-  root.classList.add(theme);
-})();
-</script>
-
-<!-- Intro init (home only; show every load) -->
-<script>
-(function() {
-  var isHome = {% if page.url == '/' %}true{% else %}false{% endif %};
-  if (!isHome) return;
-
-  var root = document.documentElement;
-  try {
-    var skip = /(?:^|[?&])intro=0(?:&|$)/.test(window.location.search);
-    if (skip) { root.classList.add('ef-intro-skip'); return; }
-  } catch (e) {
-    /* no-op */
-  }
-
-  root.classList.add('ef-intro-show');
-})();
-</script>
-
-<style>
-  /* Default-hide intro to prevent flashes; shown only when ef-intro-show is set early in <head>. */
-  #theme-endspace #ef-boot { display: none !important; }
-  html.ef-intro-show #theme-endspace #ef-boot { display: block !important; }
-  html.ef-intro-show { overflow: hidden; }
-</style>
-
 <link rel="apple-touch-icon" sizes="57x57" href="{{ base_path }}/images/apple-touch-icon-57x57.png?v=M44lzPylqQ">
 <link rel="apple-touch-icon" sizes="60x60" href="{{ base_path }}/images/apple-touch-icon-60x60.png?v=M44lzPylqQ">
 <link rel="apple-touch-icon" sizes="72x72" href="{{ base_path }}/images/apple-touch-icon-72x72.png?v=M44lzPylqQ">
