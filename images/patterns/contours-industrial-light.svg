@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="720" viewBox="0 0 720 720" fill="none">
+  <!--
+    Light-on-dark industrial topographic background (original).
+    Companion to contours-industrial.svg for dark theme.
+  -->
+  <defs>
+    <pattern id="grid" width="120" height="120" patternUnits="userSpaceOnUse">
+      <path d="M120 0H0V120" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+      <path d="M60 0V120" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <path d="M0 60H120" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="0" cy="0" r="2" fill="rgba(255,255,255,0.10)"/>
+      <circle cx="120" cy="0" r="2" fill="rgba(255,255,255,0.10)"/>
+      <circle cx="0" cy="120" r="2" fill="rgba(255,255,255,0.10)"/>
+      <circle cx="120" cy="120" r="2" fill="rgba(255,255,255,0.10)"/>
+    </pattern>
+  </defs>
+
+  <rect width="720" height="720" fill="url(#grid)"/>
+
+  <!-- topographic lines -->
+  <g stroke="rgba(255,255,255,0.14)" stroke-width="1.5">
+    <path d="M-40 190 C 80 80, 220 90, 300 150 C 380 210, 520 250, 760 150"/>
+    <path d="M-40 235 C 120 135, 240 130, 340 200 C 440 270, 560 300, 760 215"/>
+    <path d="M-40 290 C 90 220, 235 210, 355 255 C 475 300, 590 370, 760 330"/>
+    <path d="M-40 345 C 130 300, 270 265, 395 300 C 520 335, 600 440, 760 410"/>
+    <path d="M-40 405 C 120 405, 300 350, 430 390 C 560 430, 640 520, 760 530"/>
+    <path d="M-40 470 C 140 520, 320 430, 460 470 C 600 510, 650 590, 760 650"/>
+    <path d="M-40 535 C 140 615, 330 520, 470 560 C 610 600, 650 690, 760 760"/>
+  </g>
+
+  <!-- tighter contour cluster -->
+  <g stroke="rgba(255,255,255,0.14)" stroke-width="1" fill="none">
+    <path d="M110 125 C 160 90, 230 98, 270 140 C 310 182, 300 240, 250 268 C 200 296, 150 292, 120 260 C 90 228, 85 165, 110 125"/>
+    <path d="M140 145 C 175 120, 220 126, 248 156 C 276 186, 270 225, 235 245 C 200 265, 165 260, 145 235 C 125 210, 120 170, 140 145"/>
+    <path d="M168 168 C 190 152, 214 156, 230 172 C 246 190, 244 212, 222 224 C 200 236, 182 230, 172 216 C 160 198, 158 182, 168 168"/>
+  </g>
+
+  <!-- industrial markers -->
+  <g fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="1">
+    <path d="M560 120 l16 0 l-8 14 z"/>
+    <path d="M520 560 l18 0 l-9 16 z"/>
+    <path d="M180 560 l18 0 l-9 16 z"/>
+    <path d="M620 300 h60"/>
+    <path d="M620 310 h44"/>
+    <path d="M620 320 h52"/>
+    <path d="M70 610 h56"/>
+    <path d="M70 620 h40"/>
+  </g>
+
+  <!-- faint labels -->
+  <g fill="rgba(255,255,255,0.16)" font-family="monospace" font-size="12" letter-spacing="2">
+    <text x="40" y="80">GRID-02</text>
+    <text x="520" y="660">SECTOR-7</text>
+    <text x="560" y="92">N</text>
+  </g>
+</svg>

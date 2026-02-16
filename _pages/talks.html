@@ -1,16 +1,40 @@
 ---
 layout: archive
-title: "Talks and presentations"
+title: "Talking and Blogs"
 permalink: /talks/
-author_profile: true
+author_profile: false
+section_icon: notice
 ---
 
+{% include base_path %}
+
 {% if site.talkmap_link == true %}
-
-<p style="text-decoration:underline;"><a href="/talkmap.html">See a map of all the places I've given a talk!</a></p>
-
+  <p style="margin-top: 0.25rem;"><a href="{{ base_path }}/talkmap.html">See a map of all the places I've given a talk</a>.</p>
 {% endif %}
 
-{% for post in site.talks reversed %}
-  {% include archive-single-talk.html %}
+<h2>Talking</h2>
+
+{% assign talks_sorted = site.talks | sort: "date" | reverse %}
+{% include ef-grouped-banner-list.html items=talks_sorted item_include="archive-single-talk-banner.html" %}
+
+<div class="spectrum-bar" aria-hidden="true" style="margin: 1.65rem 0;"></div>
+
+<h2>Blogs</h2>
+
+{% capture written_year %}None{% endcapture %}
+{% for post in site.posts %}
+  {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+  {% if year != written_year %}
+    {% if written_year != 'None' %}
+      </div>
+    {% endif %}
+    <h3 id="{{ year | slugify }}" class="archive__subtitle">{{ year }}</h3>
+    <div class="ef-banner-list">
+    {% capture written_year %}{{ year }}{% endcapture %}
+  {% endif %}
+  {% include archive-single-banner.html %}
 {% endfor %}
+
+{% if written_year != 'None' %}
+  </div>
+{% endif %}

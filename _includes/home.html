@@ -1,0 +1,171 @@
+{% include base_path %}
+
+{% assign home = site.data.home %}
+
+<div class="es-home" id="home">
+  <section class="endspace-frame ef-glass" aria-label="Hero">
+
+    <div class="es-grid es-grid--2">
+      <div>
+        {% if home.hero.eyebrow %}<p class="tech-text">{{ home.hero.eyebrow }}</p>{% endif %}
+        <h1 class="nier-title">{{ home.hero.headline }}</h1>
+        {% if home.hero.subheadline %}<p class="es-subhead">{{ home.hero.subheadline }}</p>{% endif %}
+        {% if home.hero.lead %}<p class="es-lead">{{ home.hero.lead }}</p>{% endif %}
+
+        {% if home.hero.chips %}
+          <div class="es-row" aria-label="Focus areas">
+            {% for chip in home.hero.chips %}
+              <span class="es-tag">{{ chip }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if home.hero.ctas %}
+          <div class="es-row" aria-label="Quick links">
+            {% for cta in home.hero.ctas %}
+              {% assign cta_url = cta.url %}
+              {% if cta_url contains 'http' %}
+                {% assign cta_href = cta_url %}
+              {% else %}
+                {% assign cta_href = cta_url | prepend: base_path %}
+              {% endif %}
+              <a class="btn" href="{{ cta_href }}">{% if cta.icon %}<i class="{{ cta.icon }}" aria-hidden="true"></i>{% endif %}<span>{{ cta.label }}</span></a>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="spectrum-bar" aria-hidden="true" style="margin: 1rem 0;"></div>
+
+        <div class="es-grid es-grid--cards" aria-label="At a glance">
+          <div class="endspace-card">
+            <div class="tech-text">Affiliation</div>
+            <div class="es-strong">{{ site.author.employer }}</div>
+          </div>
+          <div class="endspace-card">
+            <div class="tech-text">Email</div>
+            <div class="es-strong"><a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></div>
+          </div>
+          <div class="endspace-card">
+            <div class="tech-text">Google Scholar</div>
+            <div class="es-strong"><a href="{{ site.author.googlescholar }}">Profile</a></div>
+          </div>
+          <div class="endspace-card">
+            <div class="tech-text">GitHub</div>
+            <div class="es-strong"><a href="https://github.com/{{ site.author.github }}">@{{ site.author.github }}</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="endspace-card es-portrait ef-float" aria-label="Portrait">
+        <div class="es-badge">ID</div>
+        <img class="es-portrait__img" src="{{ site.author.avatar | prepend: '/images/' | prepend: base_path }}" alt="{{ site.author.name }}" loading="eager" />
+        <div class="es-portrait__cap"><span class="tech-text">STATUS</span> Active research on diffusion + LLMs for science</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="research" aria-label="Research" style="margin-top: 1.6rem;">
+    <div class="endspace-frame" style="margin-bottom: 1rem;">
+      <div class="tech-text">SECTION</div>
+      <h2 style="margin: 0.35rem 0 0;">{{ home.sections.research.title }}</h2>
+      {% if home.sections.research.blurb %}<p class="es-lead" style="margin-top: 0.6rem;">{{ home.sections.research.blurb }}</p>{% endif %}
+    </div>
+
+    {% assign research_pages = site.pages | where_exp: "p", "p.research_area == true" | sort: "research_order" %}
+
+    <div class="es-grid es-grid--cards">
+      {% if research_pages and research_pages.size > 0 %}
+        {% for p in research_pages %}
+          <a class="endspace-card es-area" href="{{ p.url | prepend: base_path }}" aria-label="Open: {{ p.title }}">
+            <div class="es-badge">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
+            {% if p.research_image %}
+              <div class="es-media" aria-hidden="true">
+                <img src="{{ p.research_image | prepend: base_path }}" alt="" loading="lazy" />
+              </div>
+            {% endif %}
+            <h3 style="margin: 0.75rem 0 0;">{{ p.title }}</h3>
+            {% if p.research_card_description %}<p class="es-lead" style="margin-top: 0.55rem;">{{ p.research_card_description }}</p>{% endif %}
+            {% if p.research_tags %}
+              <div class="es-row" aria-label="Keywords" style="margin-top: 0.7rem;">
+                {% for t in p.research_tags %}
+                  <span class="es-tag">{{ t }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            {% assign ticker = p.research_ticker | default: p.title %}
+            <div class="ef-marquee" aria-hidden="true">
+              <div class="ef-marquee__track">
+                <span>{{ ticker }}</span>
+                <span aria-hidden="true">{{ ticker }}</span>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      {% else %}
+        {% for area in home.sections.research.areas %}
+          <article class="endspace-card">
+            <div class="es-badge">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
+            {% if area.image %}
+              <div class="es-media" aria-hidden="true">
+                <img src="{{ area.image | prepend: base_path }}" alt="" loading="lazy" />
+              </div>
+            {% endif %}
+            <h3 style="margin: 0.75rem 0 0;">{{ area.title }}</h3>
+            {% if area.description %}<p class="es-lead" style="margin-top: 0.55rem;">{{ area.description }}</p>{% endif %}
+            {% if area.tags %}
+              <div class="es-row" aria-label="Keywords" style="margin-top: 0.7rem;">
+                {% for t in area.tags %}
+                  <span class="es-tag">{{ t }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </article>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </section>
+
+  <section id="news" aria-label="News" style="margin-top: 1.6rem;">
+    <div class="endspace-frame" style="margin-bottom: 1rem;">
+      <div class="tech-text">SECTION</div>
+      <h2 style="margin: 0.35rem 0 0;">{{ home.sections.news.title }}</h2>
+    </div>
+
+    <div class="endspace-frame ef-glass">
+      {% if site.news and site.news.size > 0 %}
+        {% assign news_sorted = site.news | sort: "date" | reverse %}
+        {% capture news_year %}None{% endcapture %}
+        {% for u in news_sorted %}
+          {% capture y %}{{ u.date | default: "1900-01-01" | date: "%Y" }}{% endcapture %}
+          {% if y != news_year %}
+            <h3 class="archive__subtitle" style="margin-top: 1rem;">{{ y }}</h3>
+            {% capture news_year %}{{ y }}{% endcapture %}
+          {% endif %}
+
+          <div class="endspace-card ef-interactive" style="margin-top: 0.75rem;">
+            <div class="tech-text">{{ u.date | default: "1900-01-01" | date: "%Y-%m" }}</div>
+            <div style="margin-top: 0.35rem;">
+              {% if u.title %}
+                {% if u.link %}
+                  <a href="{{ u.link }}">{{ u.title }}</a>
+                {% else %}
+                  {{ u.title }}
+                {% endif %}
+              {% else %}
+                {{ u.content | remove: "<p>" | remove: "</p>" }}
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        {% for u in home.sections.news.items %}
+          <div class="endspace-card ef-interactive" style="margin-top: 0.75rem;">
+            <div class="tech-text">{{ u.date }}</div>
+            <div style="margin-top: 0.35rem;">{{ u.text }}</div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </section>
+</div>

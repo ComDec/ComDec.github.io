@@ -6,6 +6,9 @@
 
 <div itemscope itemtype="http://schema.org/Person">
 
+  <div class="tech-text" style="margin-bottom: 0.75rem;">Profile</div>
+  <div class="spectrum-bar" aria-hidden="true" style="margin: 0 0 1rem;"></div>
+
   <div class="author__avatar">
     {% if author.avatar contains "://" %}
     	<img src="{{ author.avatar }}" alt="{{ author.name }}">
@@ -21,7 +24,6 @@
   </div>
 
   <div class="author__urls-wrapper">
-    <button class="btn btn--inverse">Follow</button>
     <ul class="author__urls social-icons">
       <!-- Font Awesome icons / Biographic information  -->
       {% if author.location %}
@@ -35,6 +37,15 @@
       {% endif %}
       {% if author.email %}
         <li><a href="mailto:{{ author.email }}"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>{{ site.data.ui-text[site.locale].email_label | default: "Email" }}</a></li>
+      {% endif %}
+
+      {% if author.cv_pdf %}
+        {% if author.cv_pdf contains 'http' %}
+          {% assign cv_href = author.cv_pdf %}
+        {% else %}
+          {% assign cv_href = author.cv_pdf | prepend: base_path %}
+        {% endif %}
+        <li><a href="{{ cv_href }}"><i class="fa-solid fa-file-pdf icon-pad-right" aria-hidden="true"></i>CV (PDF)</a></li>
       {% endif %}
 
       <!-- Font Awesome and Academicons icons / Academic websites -->
@@ -151,7 +162,7 @@
         <li><a href="https://www.youtube.com/@{{ author.youtube }}"><i class="fab fa-fw fa-youtube icon-pad-right" aria-hidden="true"></i>YouTube</a></li>
       {% endif %}
       {% if author.zhihu %}
-      <li><a href="htps://www.zhihu.com/people/{{ author.zhihu }}"><i class="fab fa-fw fa-zhihu icon-pad-right" aria-hidden="true"></i>Zhihu</a></li>
+      <li><a href="https://www.zhihu.com/people/{{ author.zhihu }}"><i class="fab fa-fw fa-zhihu icon-pad-right" aria-hidden="true"></i>Zhihu</a></li>
       {% endif %}      
     </ul>
   </div>

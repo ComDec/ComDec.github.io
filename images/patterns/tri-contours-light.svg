@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+  <!-- Light (white) contour detail used inside HUD triangle for dark theme -->
+  <g stroke="rgba(255,255,255,0.32)" stroke-width="1" fill="none">
+    <path d="M10 78 C 32 58, 56 60, 78 70 C 92 77, 104 78, 112 74"/>
+    <path d="M14 86 C 36 70, 60 70, 84 80 C 98 86, 108 86, 114 84"/>
+    <path d="M18 94 C 40 82, 64 82, 88 90 C 102 96, 110 96, 116 94"/>
+  </g>
+  <g stroke="rgba(255,255,255,0.20)" stroke-width="1" fill="none">
+    <path d="M22 66 C 42 52, 60 52, 82 62"/>
+    <path d="M32 58 C 50 48, 66 48, 86 56"/>
+  </g>
+  <g fill="rgba(255,255,255,0.24)">
+    <circle cx="28" cy="72" r="1.6"/>
+    <circle cx="52" cy="66" r="1.4"/>
+    <circle cx="78" cy="72" r="1.5"/>
+  </g>
+</svg>

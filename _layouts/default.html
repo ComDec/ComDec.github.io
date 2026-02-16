@@ -12,20 +12,43 @@ layout: compress
   </head>
 
   <body>
+    <div id="theme-endspace">
+      {% include browser-upgrade.html %}
+      {% include masthead.html %}
 
-    {% include browser-upgrade.html %}
-    {% include masthead.html %}
+      {% if page.url == '/' %}
+        {% include boot-overlay.html %}
+      {% endif %}
 
-    {{ content }}
+      <div class="ef-hud-tl ef-hud-br" aria-hidden="true"></div>
+      <div class="ef-rails" aria-hidden="true"></div>
+      <div class="ef-watermark" aria-hidden="true">
+        <div class="ef-watermark__track ef-watermark__track--a">XI_WANG • NYU_COURANT • GENERATIVE_MODELS • DIFFUSION • LLM • GFLOWNET •</div>
+        <div class="ef-watermark__track ef-watermark__track--b">ENDSPACE_UI • SCIENTIFIC_DISCOVERY • MOLECULES • RNA • PROTEINS •</div>
+      </div>
+      <div class="ef-bgfx" aria-hidden="true"></div>
+      <div class="ef-floaters" aria-hidden="true">
+        <div class="ef-floater ef-floater--ring" style="--x: 8vw; --y: 22vh; --s: 140px; --fx: 18px; --fy: -14px;"></div>
+        <div class="ef-floater ef-floater--tri" style="--x: 92vw; --y: 30vh; --s: 120px; --fx: -16px; --fy: 12px;"></div>
+        <div class="ef-floater ef-floater--dotgrid" style="--x: 86vw; --y: 78vh; --s: 160px; --fx: -20px; --fy: -12px;"></div>
+        <div class="ef-floater ef-floater--ring" style="--x: 14vw; --y: 82vh; --s: 110px; --fx: 14px; --fy: 10px; opacity: 0.22;"></div>
+      </div>
 
-    <div class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include footer.html %}
-      </footer>
+      {{ content }}
+
+      <button id="ef-totop" class="ef-totop" type="button" aria-label="Back to top">
+        <span class="ef-totop__glyph" aria-hidden="true"></span>
+        <span class="ef-totop__text" aria-hidden="true">TOP</span>
+      </button>
+
+      <div class="page__footer">
+        <footer>
+          {% include footer/custom.html %}
+          {% include footer.html %}
+        </footer>
+      </div>
     </div>
 
     {% include scripts.html %}
-
   </body>
 </html>

@@ -1,0 +1,33 @@
+hero:
+  eyebrow: "CS PhD student @ NYU Courant / NYU Shanghai"
+  headline: "Generative Models for Scientific Discovery"
+  subheadline: "Diffusion, LLM pretraining, and post-training with GFlowNet/RL"
+  lead: "I work on generative modeling for molecules, RNA, and proteins. My goal is to build reliable, controllable models that respect scientific constraints."
+  chips:
+    - "Diffusion"
+    - "LLMs"
+    - "GFlowNet / RL"
+    - "AI for Science"
+  ctas:
+    - label: "CV (PDF)"
+      url: "/References/resume.pdf"
+      style: "primary"
+      icon: "fa-solid fa-file-pdf"
+    - label: "Publications"
+      url: "/publications/"
+      style: "secondary"
+      icon: "fa-solid fa-book-open"
+    - label: "Google Scholar"
+      url: "https://scholar.google.com/citations?user=IkSb2tIAAAAJ&hl=en"
+      style: "ghost"
+      icon: "ai ai-google-scholar"
+
+sections:
+  research:
+    title: "Research"
+    blurb: "I'm interested in building foundation models and generative systems that can be controlled and trusted in scientific domains."
+    areas: []
+
+  news:
+    title: "News"
+    items: []

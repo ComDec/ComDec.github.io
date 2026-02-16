@@ -1,3 +1,169 @@
 <script src="{{ base_path }}/assets/js/main.min.js"></script>
 
+<script>
+(function() {
+  var root = document.documentElement;
+  if (!root.classList.contains('ef-intro-show')) return;
+
+  var boot = document.getElementById('ef-boot');
+  if (!boot) return;
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var wiping = false;
+  var done = false;
+
+  function finish() {
+    if (done) return;
+    done = true;
+
+    boot.hidden = true;
+    boot.classList.remove('is-wipe', 'is-out');
+    root.classList.remove('ef-boot-lock');
+    root.classList.remove('ef-intro-show');
+    root.classList.add('ef-intro-skip');
+  }
+
+  function startWipe() {
+    if (done || wiping) return;
+    wiping = true;
+    boot.classList.add('is-wipe');
+
+    var wipeMs = reduce ? 520 : 1000;
+
+    window.setTimeout(function() {
+      finish();
+    }, wipeMs);
+  }
+
+  boot.hidden = false;
+  root.classList.add('ef-boot-lock');
+
+  var skip = boot.querySelector('.ef-boot__skip');
+  if (skip) skip.addEventListener('click', startWipe);
+  boot.addEventListener('click', startWipe);
+  window.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') startWipe();
+  }, { once: true });
+
+  var start = performance.now();
+  var minShow = reduce ? 120 : 320;
+  var maxShow = reduce ? 420 : 1200;
+
+  function tick(now) {
+    if (done || wiping) return;
+    var elapsed = now - start;
+    if (elapsed >= minShow || elapsed >= maxShow) {
+      startWipe();
+      return;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+})();
+</script>
+
+<script>
+(function() {
+  function setTheme(t) {
+    var root = document.documentElement;
+    root.classList.remove('dark', 'light');
+    root.classList.add(t);
+    try { localStorage.setItem('theme', t); } catch (e) {}
+  }
+
+  function getTheme() {
+    var root = document.documentElement;
+    if (root.classList.contains('dark')) return 'dark';
+    if (root.classList.contains('light')) return 'light';
+    return null;
+  }
+
+  var btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+
+  btn.addEventListener('click', function() {
+    var cur = getTheme() || 'dark';
+    setTheme(cur === 'dark' ? 'light' : 'dark');
+  });
+})();
+</script>
+
+<script>
+(function() {
+  var root = document.getElementById('theme-endspace');
+  if (!root) return;
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+  if (reduce || !fine) return;
+
+  var tx = 0;
+  var ty = 0;
+  var cx = 0;
+  var cy = 0;
+  var raf = 0;
+
+  function tick() {
+    raf = 0;
+    tx += (cx - tx) * 0.08;
+    ty += (cy - ty) * 0.08;
+    root.style.setProperty('--mx', tx.toFixed(4));
+    root.style.setProperty('--my', ty.toFixed(4));
+    if (Math.abs(cx - tx) > 0.001 || Math.abs(cy - ty) > 0.001) {
+      raf = requestAnimationFrame(tick);
+    }
+  }
+
+  function onMove(e) {
+    var w = window.innerWidth || 1;
+    var h = window.innerHeight || 1;
+    cx = (e.clientX / w) * 2 - 1;
+    cy = (e.clientY / h) * 2 - 1;
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+
+  function onLeave() {
+    cx = 0;
+    cy = 0;
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('mousemove', onMove, { passive: true });
+  document.addEventListener('mouseleave', onLeave, { passive: true });
+})();
+</script>
+
+<script>
+(function() {
+  var btn = document.getElementById('ef-totop');
+  if (!btn) return;
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var raf = 0;
+
+  function update() {
+    raf = 0;
+    var y = window.scrollY || document.documentElement.scrollTop || 0;
+    if (y > 640) btn.classList.add('is-visible');
+    else btn.classList.remove('is-visible');
+  }
+
+  function onScroll() {
+    if (!raf) raf = requestAnimationFrame(update);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  update();
+
+  btn.addEventListener('click', function() {
+    try {
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    } catch (e) {
+      window.scrollTo(0, 0);
+    }
+  });
+})();
+</script>
+
 {% include analytics.html %}

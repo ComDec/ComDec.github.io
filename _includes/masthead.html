@@ -13,11 +13,24 @@
               {% else %}
               {% assign domain = base_path %}
             {% endif %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
+            <li class="masthead__menu-item">
+              <a href="{{ domain }}{{ link.url }}">
+                {% if link.icon %}
+                  {% capture ef_nav_icon_path %}endfield/icons/{{ link.icon }}.svg{% endcapture %}
+                  <span class="ef-navicon" aria-hidden="true">{% include {{ ef_nav_icon_path }} %}</span>
+                {% endif %}
+                <span class="ef-navlabel">{{ link.title }}</span>
+              </a>
+            </li>
           {% endfor %}
         </ul>
         <ul class="hidden-links hidden"></ul>
       </nav>
+
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+        <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
+        <span class="theme-toggle__text">Theme</span>
+      </button>
     </div>
   </div>
 </div>

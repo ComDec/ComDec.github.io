@@ -1,46 +1,29 @@
 ---
-layout: archive
+layout: single
 title: "CV"
 permalink: /cv/
-author_profile: true
+author_profile: false
+section_icon: information
 redirect_from:
   - /resume
 ---
 
 {% include base_path %}
 
-Education
-======
-* Ph.D. in Computer Science, New York University, 2030 (expected)
-  * Advisor: Prof. Shengjie Wang
-  * Research interests: Large Language Models, Generative Models, Computational Chemistry, Bioinformatics
-* M.S. in Computational Chemistry, Shanghai Jiao Tong University, 2024
-* B.S. in Bioinformatics, Shanghai Jiao Tong University, 2023
+<div class="cta-row" style="margin-top: 0.5rem;">
+  {% if site.author.cv_pdf %}<a class="btn" href="{{ site.author.cv_pdf | prepend: base_path }}"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i><span>Download CV (PDF)</span></a>{% endif %}
+  {% if site.author.googlescholar %}<a class="btn" href="{{ site.author.googlescholar }}"><i class="ai ai-google-scholar" aria-hidden="true"></i><span>Google Scholar</span></a>{% endif %}
+  {% if site.author.github %}<a class="btn" href="https://github.com/{{ site.author.github }}"><i class="fab fa-github" aria-hidden="true"></i><span>GitHub</span></a>{% endif %}
+</div>
 
-Work experience
-======
-* Spring 2024: Research Assistant
-  * New York University
-  * Duties includes: Develop new strategies to help LLM understand chemical languages
-  * Supervisor: Prof. Shengjie Wang
+## Education
 
-* Fall 2023: Collaborator
-  * Microsoft Research Asia
-  * Duties included: DFT computation and pre-trained models development
+* PhD Student, Computer Science (Courant), New York University, 2025-2030 (expected)
+* B.S., Computer Science and Bioinformatics, Shanghai Jiao Tong University, 2019-2023
 
-* Summer 2022: Research Intern
-  * DP Technologies and Peking University
-  * Duties included: Language models pre-trainning and evaluation.
-  * Supervisor: AI for Biology group
+## Work experience
 
-* Spring 2022: Research Intern
-  * University of Michigan
-  * Duties included: Computional biology research
-  * Supervisor: Prof. Yang Zhang
-
-
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+* 2024.05-2025.05: Research Associate, New York University
+* 2023.10-2025.05: Part-time Researcher, Microsoft Research Asia
+* 2022.05-2025.03: Researcher, DP Technology
+* 2022.01-2022.09: Research Associate, University of Michigan

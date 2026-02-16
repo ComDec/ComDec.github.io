@@ -8,10 +8,10 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Xi Wang Personal Academic Pages"
+title                    : "Xi Wang"
 title_separator          : "-"
 name                     : &name "Xi Wang"
-description              : &description "personal description"
+description              : &description "CS PhD student at NYU Courant. Generative models for molecules, RNA, and proteins (diffusion, LLM pretraining, GFlowNet/RL post-training)."
 url                      : https://ComDec.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "ComDec/ComDec.github.io"
@@ -24,17 +24,20 @@ author:
   avatar           : "profile.png"
   name             : "Xi Wang"
   pronouns         : # example: "she/her"  
-  bio              : "AI for Science, LLMs"
-  location         : "Beijing, China"
-  employer         : "New York University"
-  uri              : # URL
+  bio              : "CS PhD student @ NYU Courant. Generative models for molecules, RNA, and proteins."
+  location         : "New York, NY"
+  employer         : "New York University (Courant)"
+  uri              : "https://comdec.github.io"
   email            : "esche.wang@outlook.com" 
+
+  # Quick links
+  cv_pdf           : "/References/resume.pdf"
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : "https://scholar.google.com.hk/citations?user=IkSb2tIAAAAJ&hl=en"
+  googlescholar    : "https://scholar.google.com/citations?user=IkSb2tIAAAAJ&hl=en"
   impactstory      : # URL
-  orcid            : "https://orcid.org/my-orcid?orcid=0000-0002-2881-6269"
+  orcid            : "https://orcid.org/0000-0002-2881-6269"
   semantic         : # URL
   pubmed           : # URL
   researchgate     : # URL
@@ -75,12 +78,12 @@ author:
 
 # Publication Category - The following the list of publication categories and their headings
 publication_category:
+  conferences:
+    title: 'Conference'
+  manuscripts:
+    title: 'Journal Articles'
   preprint:
     title: 'Preprint'
-  manuscripts:
-    title: 'Journal Articles'    
-  conferences:
-    title: 'Conference Papers'
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
@@ -211,6 +214,9 @@ kramdown:
 
 # These settings control the types of collections used by the template
 collections:
+  news:
+    output: false
+    permalink: /:collection/:path/
   teaching:
     output: false
     permalink: /:collection/:path/
@@ -245,6 +251,13 @@ defaults:
     values:
       layout: single
       author_profile: true
+  # _news
+  - scope:
+      path: ""
+      type: news
+    values:
+      layout: single
+      author_profile: false
   # _teaching
   - scope:
       path: ""

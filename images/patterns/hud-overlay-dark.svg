@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="720" viewBox="0 0 720 720" fill="none">
+  <!-- Subtle industrial HUD overlay (original) for dark theme -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(98,240,245,0.16)"/>
+      <stop offset="0.55" stop-color="rgba(0,0,0,0.00)"/>
+      <stop offset="1" stop-color="rgba(255,94,58,0.16)"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="720" height="720" fill="url(#g)" opacity="0.55"/>
+
+  <g stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="6 8">
+    <path d="M-40 560 C 120 480, 280 520, 420 480 C 560 440, 640 350, 760 360"/>
+  </g>
+
+  <g stroke="rgba(255,255,255,0.10)" stroke-width="1.2" fill="none">
+    <path d="M64 54 H110"/>
+    <path d="M64 54 V100"/>
+    <path d="M656 54 H610"/>
+    <path d="M656 54 V100"/>
+    <path d="M64 666 H110"/>
+    <path d="M64 666 V620"/>
+    <path d="M656 666 H610"/>
+    <path d="M656 666 V620"/>
+    <circle cx="96" cy="86" r="20"/>
+    <circle cx="624" cy="86" r="18"/>
+    <circle cx="96" cy="624" r="16"/>
+    <circle cx="624" cy="624" r="22"/>
+  </g>
+
+  <g fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1">
+    <path d="M560 118 l16 0 l-8 14 z"/>
+    <path d="M140 586 l18 0 l-9 16 z"/>
+    <path d="M590 340 h70"/>
+    <path d="M590 350 h52"/>
+  </g>
+
+  <g fill="rgba(255,255,255,0.14)" font-family="monospace" font-size="12" letter-spacing="2">
+    <text x="52" y="150">SECTOR-7</text>
+    <text x="520" y="650">LINK-A</text>
+  </g>
+</svg>

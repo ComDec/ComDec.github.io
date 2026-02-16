@@ -2,7 +2,8 @@
 layout: archive
 title: "Publications"
 permalink: /publications/
-author_profile: true
+author_profile: false
+section_icon: lore
 ---
 
 {% if site.author.googlescholar %}
@@ -14,23 +15,13 @@ author_profile: true
 <!-- New style rendering if publication categories are defined -->
 {% if site.publication_category %}
   {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
+    {% assign pubs_in_cat = site.publications | where: "category", category[0] | sort: "date" | reverse %}
+    {% if pubs_in_cat and pubs_in_cat.size > 0 %}
+      <h2>{{ category[1].title }}</h2><hr />
+      {% include ef-grouped-banner-list.html items=pubs_in_cat item_include="archive-single-banner.html" %}
+    {% endif %}
   {% endfor %}
 {% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
+  {% assign pubs_sorted = site.publications | sort: "date" | reverse %}
+  {% include ef-grouped-banner-list.html items=pubs_sorted item_include="archive-single-banner.html" %}
 {% endif %}
-
-
-

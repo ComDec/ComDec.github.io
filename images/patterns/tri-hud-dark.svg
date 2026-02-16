@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+  <!-- Dark-theme HUD texture (white ink) for orange-red triangle -->
+  <g stroke="rgba(255,255,255,0.34)" stroke-width="1" fill="none">
+    <path d="M8 78 C 34 56, 58 60, 80 70 C 96 77, 108 78, 116 74"/>
+    <path d="M12 88 C 38 70, 62 70, 86 80 C 102 86, 112 86, 118 84"/>
+    <path d="M20 64 C 44 48, 62 52, 86 60"/>
+  </g>
+  <g stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="none">
+    <path d="M20 96 C 44 84, 66 84, 90 92"/>
+    <path d="M34 56 C 52 48, 66 48, 86 56"/>
+  </g>
+  <g fill="rgba(255,255,255,0.22)">
+    <rect x="16" y="18" width="4" height="4"/>
+    <rect x="94" y="26" width="3" height="3"/>
+    <circle cx="30" cy="72" r="1.6"/>
+    <circle cx="52" cy="66" r="1.4"/>
+    <circle cx="78" cy="72" r="1.5"/>
+  </g>
+</svg>

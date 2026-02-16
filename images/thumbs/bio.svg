@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f59e0b" stop-opacity="0.14"/>
+      <stop offset="0.55" stop-color="#ffffff" stop-opacity="0.0"/>
+      <stop offset="1" stop-color="#0f766e" stop-opacity="0.14"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="624" height="384" rx="28" fill="url(#bg)" stroke="rgba(15,23,42,0.12)"/>
+  <g opacity="0.9">
+    <path d="M210 118 C 250 92, 300 92, 332 122 C 362 150, 360 192, 322 214 C 292 232, 250 238, 222 262 C 188 292, 196 332, 244 340" stroke="#0f766e" stroke-width="6" stroke-linecap="round"/>
+    <path d="M430 118 C 392 92, 342 92, 310 122 C 280 150, 282 192, 320 214 C 350 232, 392 238, 420 262 C 454 292, 446 332, 398 340" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+
+    <circle cx="210" cy="118" r="10" fill="#0f766e"/>
+    <circle cx="430" cy="118" r="10" fill="#f59e0b"/>
+    <circle cx="244" cy="340" r="10" fill="#0f766e"/>
+    <circle cx="398" cy="340" r="10" fill="#f59e0b"/>
+  </g>
+  <g opacity="0.55">
+    <circle cx="320" cy="200" r="58" fill="rgba(15,23,42,0.06)"/>
+  </g>
+</svg>

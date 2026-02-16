@@ -5,20 +5,25 @@
 # prevent it from being included in the site.
 
 main:
+  - title: "Research"
+    url: /#research
+    icon: operator
+
+  - title: "News"
+    url: /#news
+    icon: notice
+
   - title: "Publications"
     url: /publications/
+    icon: lore
 
-  - title: "Talks"
-    url: /talks/    
-
-  - title: "Teaching"
-    url: /teaching/    
-        
-  - title: "Blog Posts"
-    url: /year-archive/
-    
   - title: "CV"
     url: /cv/
+    icon: information
+
+  - title: "Talking and Blogs"
+    url: /talks/
+    icon: notice
 
   # - title: "Contact"
   #   url: /contact/

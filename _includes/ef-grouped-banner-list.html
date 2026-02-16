@@ -1,0 +1,23 @@
+{% assign items = include.items %}
+
+{% if items and items.size > 0 %}
+  {% capture current_year %}None{% endcapture %}
+  {% for post in items %}
+    {% capture year %}{{ post.date | default: "1900-01-01" | date: "%Y" }}{% endcapture %}
+
+    {% if year != current_year %}
+      {% if current_year != 'None' %}
+        </div>
+      {% endif %}
+      <h3 id="{{ year | slugify }}" class="archive__subtitle">{{ year }}</h3>
+      <div class="ef-banner-list">
+      {% capture current_year %}{{ year }}{% endcapture %}
+    {% endif %}
+
+    {% include {{ include.item_include }} %}
+  {% endfor %}
+
+  {% if current_year != 'None' %}
+    </div>
+  {% endif %}
+{% endif %}

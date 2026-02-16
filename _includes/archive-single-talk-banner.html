@@ -1,0 +1,51 @@
+{% include base_path %}
+
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
+
+{% assign tile_image = post.thumbnail | default: post.header.teaser | default: site.teaser %}
+
+<div class="list__item">
+  <article class="ef-banner" itemscope itemtype="http://schema.org/CreativeWork">
+    <a class="ef-banner__link" href="{{ base_path }}{{ post.url }}" rel="permalink">
+      <div class="ef-banner__media" aria-hidden="true">
+        {% if tile_image %}
+          <img class="ef-banner__img" src=
+            {% if tile_image contains "://" %}
+              "{{ tile_image }}"
+            {% else %}
+              "{{ tile_image | prepend: base_path }}"
+            {% endif %}
+            alt="" loading="lazy">
+        {% else %}
+          <div class="ef-banner__placeholder"></div>
+        {% endif %}
+        <div class="ef-banner__corner" aria-hidden="true"></div>
+      </div>
+
+      <div class="ef-banner__panel">
+        <div class="ef-banner__meta">
+          <span class="ef-banner__date">{{ post.date | default: "1900-01-01" | date: "%Y-%m-%d" }}</span>
+          <span class="ef-banner__sep">/</span>
+          <span class="ef-banner__type">Talk</span>
+          {% if post.venue %}<span class="ef-banner__sep">/</span><span class="ef-banner__venue">{{ post.venue }}</span>{% endif %}
+          {% if post.location %}<span class="ef-banner__sep">/</span><span class="ef-banner__venue">{{ post.location }}</span>{% endif %}
+        </div>
+
+        <h3 class="ef-banner__title" itemprop="headline">{{ title }}</h3>
+
+        {% if post.excerpt %}
+          <p class="ef-banner__desc" itemprop="description">{{ post.excerpt | markdownify | remove: "<p>" | remove: "</p>" }}</p>
+        {% endif %}
+
+        <div class="ef-banner__cta" aria-hidden="true">
+          <span>ACCESS</span>
+          <span class="ef-banner__arrow">&rarr;</span>
+        </div>
+      </div>
+    </a>
+  </article>
+</div>

@@ -15,10 +15,31 @@ layout: default
 <div id="main" role="main">
   {% include sidebar.html %}
 
-  <div class="archive">
+  <div class="archive endspace-frame{% unless page.author_profile or layout.author_profile or page.sidebar %} archive--nosidebar{% endunless %}">
+
     {% unless page.header.overlay_color or page.header.overlay_image %}
-      <h1 class="page__title">{{ page.title }}</h1>
+      {% assign ef_icon = page.section_icon %}
+      <header class="es-pagehead{% if ef_icon %} es-pagehead--icon{% endif %}">
+        <div class="ef-headrow">
+          {% if ef_icon %}
+            {% capture ef_icon_path %}endfield/icons/{{ ef_icon }}.svg{% endcapture %}
+            <div class="ef-headicon" aria-hidden="true">
+              <div class="ef-headicon__bars"></div>
+              <div class="ef-headicon__svg">{% include {{ ef_icon_path }} %}</div>
+            </div>
+          {% endif %}
+
+          <div class="ef-headcopy">
+            <div class="tech-text">Section</div>
+            {% if page.title %}<h1 class="page__title nier-title">{{ page.title }}</h1>{% endif %}
+          </div>
+        </div>
+      </header>
+      <div class="spectrum-bar" aria-hidden="true" style="margin: 1rem 0;"></div>
     {% endunless %}
-    {{ content }}
+
+    <div class="es-archive-body">
+      {{ content }}
+    </div>
   </div>
 </div>

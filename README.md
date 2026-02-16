@@ -1,75 +1,205 @@
-# Academic Pages
-**Academic Pages is a Github Pages template for academic websites.**
+# Personal Academic Site (Jekyll)
 
-# Getting Started
+This repository builds a static personal academic website with Jekyll (AcademicPages / Minimal Mistakes base) plus a custom "Endspace / industrial HUD" skin.
 
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Click the "Use this template" button in the top right.
-1. On the "New repository" page, enter your repository name as "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and add your content.
-1. Upload any files (like PDFs, .zip files, etc.) to the `files/` directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.
-1. Check status by going to the repository settings, in the "GitHub pages" section
-1. (Optional) Use the Jupyter notebooks or python scripts in the `markdown_generator` folder to generate markdown files for publications and talks from a TSV file.
+The goal of this README is: after the initial setup, you should be able to update almost all visible content by editing Markdown files (plus one small YAML file for the homepage hero).
 
-See more info at https://academicpages.github.io/
+## Local preview
 
-## Running locally
-
-When you are initially working your website, it is very useful to be able to preview the changes locally before pushing them to GitHub. To work locally you will need to:
-
-1. Clone the repository and made updates as detailed above.
-1. Make sure you have ruby-dev, bundler, and nodejs installed
-    
-    On most Linux distribution and [Windows Subsystem Linux](https://learn.microsoft.com/en-us/windows/wsl/about) the command is:
-    ```bash
-    sudo apt install ruby-dev ruby-bundler nodejs
-    ```
-    On MacOS the commands are:
-    ```bash
-    brew install ruby
-    brew install node
-    gem install bundler
-    ```
-1. Run `bundle install` to install ruby dependencies. If you get errors, delete Gemfile.lock and try again.
-1. Run `jekyll serve -l -H localhost` to generate the HTML and serve it from `localhost:4000` the local server will automatically rebuild and refresh the pages on change.
-
-If you are running on Linux it may be necessary to install some additional dependencies prior to being able to run locally: `sudo apt install build-essential gcc make`
-
-## Using Docker
-
-Working from a different OS, or just want to avoid installing dependencies? You can use the provided `Dockerfile` to build a container that will run the site for you if you have [Docker](https://www.docker.com/) installed.
-
-Start by build the container:
+Prereqs: Ruby + Bundler.
 
 ```bash
-docker build -t jekyll-site .
+bundle install
+bundle exec jekyll serve -l -H localhost --port 4000 --livereload --config _config.yml,_config_dev.yml
 ```
 
-Next, run the container:
+Build-only:
+
 ```bash
-docker run -p 4000:4000 --rm -v $(pwd):/usr/src/app jekyll-site
+bundle exec jekyll build --config _config.yml,_config_dev.yml
 ```
 
-# Maintenance
+## Where to edit content (by section)
 
-Bug reports and feature requests to the template should be [submitted via GitHub](https://github.com/academicpages/academicpages.github.io/issues/new/choose). For questions concerning how to style the template, please feel free to start a [new discussion on GitHub](https://github.com/academicpages/academicpages.github.io/discussions).
+### Site-wide metadata
 
-This repository was forked (then detached) by [Stuart Geiger](https://github.com/staeiou) from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/), which is © 2016 Michael Rose and released under the MIT License (see LICENSE.md). It is currently being maintained by [Robert Zupko](https://github.com/rjzupkoii) and additional maintainers would be welcomed.
+- `_config.yml`
+  - `title`, `description`, author fields (email, affiliation, etc.)
+  - collections: `publications`, `talks`, `news`
 
-## Bugfixes and enhancements
+### Navigation bar
 
-If you have bugfixes and enhancements that you would like to submit as a pull request, you will need to [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository as opposed to using it as a template. This will also allow you to [synchronize your copy](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) of template to your fork as well.
+- `_data/navigation.yml`
+  - controls the top nav items and their icons
+  - each item supports:
+    - `title`: text label
+    - `url`: internal path (e.g. `/publications/`) or an anchor (e.g. `/#research`)
+    - `icon`: one of the SVG ids in `_includes/endfield/icons/` (e.g. `lore`, `notice`, `operator`)
 
-Unfortunately, one logistical issue with a template theme like Academic Pages that makes it a little tricky to get bug fixes and updates to the core theme. If you use this template and customize it, you will probably get merge conflicts if you attempt to synchronize. If you want to save your various .yml configuration files and markdown files, you can delete the repository and fork it again. Or you can manually patch.
+### Homepage
 
+The homepage is `/_pages/about.md` (permalink `/`) and renders `/_includes/home.html`.
+
+- Hero text: `_data/home.yml` under `hero:`
+- Research cards (clickable): generated from the Research subpages (Markdown)
+- News list: generated from `/_news/*.md` (Markdown)
+
+### Research (homepage cards + subpages)
+
+Each Research card on the homepage links to a dedicated Markdown page under `/_pages/`.
+
+Edit these files:
+
+- `_pages/research-diffusion-molecular-design.md`
+- `_pages/research-llm-pretraining-scientific-sequences.md`
+- `_pages/research-post-training-gflownet-rl.md`
+- `_pages/research-ai-for-science-rna-proteins.md`
+
+Each research page controls BOTH:
+1) its own page content (Markdown body)
+2) how the card looks on the homepage (front-matter fields)
+
+Required/typical front-matter fields:
+
+```yaml
 ---
-<div align="center">
-    
-![pages-build-deployment](https://github.com/academicpages/academicpages.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)
-[![GitHub contributors](https://img.shields.io/github/contributors/academicpages/academicpages.github.io.svg)](https://github.com/academicpages/academicpages.github.io/graphs/contributors)
-[![GitHub release](https://img.shields.io/github/v/release/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io/releases/latest)
-[![GitHub license](https://img.shields.io/github/license/academicpages/academicpages.github.io?color=blue)](https://github.com/academicpages/academicpages.github.io/blob/master/LICENSE)
+layout: single
+title: "Your Research Area"
+permalink: /research/your-slug/
+author_profile: false
 
-[![GitHub stars](https://img.shields.io/github/stars/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io)
-[![GitHub forks](https://img.shields.io/github/forks/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io/fork)
-</div>
+# Makes it appear as a homepage Research card
+research_area: true
+
+# Controls ordering on the homepage (smaller first)
+research_order: 10
+
+# Card media + copy
+research_image: /images/thumbs/your.svg
+research_card_description: "1-2 sentence description shown on the card."
+research_tags:
+  - tag one
+  - tag two
+
+# Hover ticker text (marquee). You can freely customize.
+research_ticker: "SOME TEXT • SOME TEXT • SOME TEXT •"
+
+# Optional header icon
+section_icon: operator
+---
+```
+
+To add a NEW Research area:
+
+1. Copy one of the existing `/_pages/research-*.md` files
+2. Change `title` + `permalink`
+3. Set `research_area: true` and a new `research_order`
+4. Set `research_image` (add the image file under `images/thumbs/`)
+5. Write the Markdown body under the front matter
+
+### News (Markdown, auto-sorted)
+
+News items live in `/_news/*.md`.
+
+- Add a new item: create `/_news/YYYY-MM-DD-some-slug.md`
+- The homepage automatically:
+  - sorts by `date` (newest first)
+  - groups by year with an automatic year header
+
+Front matter:
+
+```yaml
+---
+date: 2026-02-16
+title: "One-line news entry."
+---
+```
+
+If you omit `title`, the homepage will display the Markdown body text.
+
+### Publications (Markdown, auto-sorted + year headers)
+
+Publications live in `/_publications/*.md`.
+
+The Publications page (`/_pages/publications.html`) automatically:
+
+- sorts by `date` (newest first)
+- groups by year with an automatic year header
+- if `publication_category` is configured in `_config.yml`, it will group by category first, then by year within each category
+
+To add a publication: create a new `/_publications/YYYY-MM-DD-some-slug.md` with a correct `date`.
+
+Common fields used by the banner cards:
+
+```yaml
+---
+title: "Paper title"
+date: 2025-04-03
+venue: "Conference / Journal"
+thumbnail: /images/thumbs/some.svg
+excerpt: "One or two lines shown on the card."
+paperurl: "https://..."   # optional
+codeurl: "https://..."    # optional
+---
+```
+
+### Talking and Blogs (Markdown, auto-sorted + year headers)
+
+The combined page is `/_pages/talks.html`.
+
+It contains:
+
+- Talking: items from `/_talks/*.md` (sorted by `date`, grouped by year)
+- Blogs: items from `/_posts/*.md` (already time-sorted by Jekyll, grouped by year)
+
+To add a talk: add a new file under `/_talks/` with a valid `date`.
+
+To add a blog post: add a new file under `/_posts/` with name `YYYY-MM-DD-title.md`.
+
+### CV (Markdown)
+
+- `_pages/cv.md`
+
+This page is intended to be simple and editable like a normal Markdown doc.
+
+## Sorting and year grouping (how it works)
+
+- Publications page: sorts and groups in `/_pages/publications.html`
+- Talking page (talk list): sorts and groups in `/_pages/talks.html`
+- Shared helper for year grouping: `/_includes/ef-grouped-banner-list.html`
+
+The year title is based on `post.date | date: "%Y"`.
+
+## Theme/UI knobs (if you need to tweak behavior)
+
+### Intro / wipe animation (home only)
+
+- Markup: `/_includes/boot-overlay.html`
+- Trigger logic: `/_includes/head/custom.html` + `/_includes/scripts.html`
+- Styling: `/_sass/_endspace.scss`
+
+Skip the intro for a single load:
+
+- `/?intro=0`
+
+### Back-to-top button
+
+- Markup: `/_layouts/default.html` (`#ef-totop`)
+- Behavior: `/_includes/scripts.html`
+- Styling/position: `/_sass/_endspace.scss` (`.ef-totop`)
+
+## Common pitfalls
+
+- Dates control ordering. If a card is in the wrong place, check the `date:` field.
+- If a Research card disappears from the homepage, ensure the page has `research_area: true`.
+- If you change `_config.yml`, restart `jekyll serve` (Jekyll does not hot-reload config).
+
+## Upstream template note
+
+The site started from AcademicPages / Minimal Mistakes. The structure is still Jekyll, but most visible content is now driven from Markdown in:
+
+- `/_pages/`
+- `/_publications/`
+- `/_talks/`
+- `/_news/`
+- `/_posts/`
