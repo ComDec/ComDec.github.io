@@ -19,6 +19,15 @@
 (function() {
   var root = document.documentElement;
 
+  // Local preview can exhibit GPU/compositing flicker with heavy blend/blur layers.
+  // Mark local host so CSS can tone down only those effects during development.
+  try {
+    var hn = window.location && window.location.hostname ? window.location.hostname : '';
+    if (hn === 'localhost' || hn === '127.0.0.1' || hn === '0.0.0.0') root.classList.add('ef-local');
+  } catch (e) {
+    /* no-op */
+  }
+
   // Theme init as early as possible to prevent flashes.
   var saved = null;
   try { saved = localStorage.getItem('theme'); } catch (e) { saved = null; }
