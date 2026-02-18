@@ -36,6 +36,10 @@
   var isHome = {% if page.url == '/' %}true{% else %}false{% endif %};
   if (!isHome) return;
 
+  // Revision tag so a new deploy can replay the intro.
+  // Uses build time (works locally + on GitHub Pages).
+  var introRev = "{{ site.time | date: '%s' }}";
+
   try {
     var qs = window.location && window.location.search ? window.location.search : '';
     var forceSkip = /(?:^|[?&])intro=0(?:&|$)/.test(qs);
@@ -48,7 +52,7 @@
 
     if (!forceShow) {
       try {
-        if (sessionStorage.getItem('ef_intro_seen') === '1') {
+        if (sessionStorage.getItem('ef_intro_seen_rev') === introRev) {
           root.classList.add('ef-intro-skip');
           return;
         }

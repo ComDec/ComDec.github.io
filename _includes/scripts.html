@@ -8,6 +8,9 @@
   var boot = document.getElementById('ef-boot');
   if (!boot) return;
 
+  // Keep consistent with head init so a new deploy can replay the intro.
+  var introRev = "{{ site.time | date: '%s' }}";
+
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var wiping = false;
   var done = false;
@@ -22,7 +25,10 @@
     root.classList.remove('ef-intro-show');
     root.classList.add('ef-intro-skip');
 
-    try { sessionStorage.setItem('ef_intro_seen', '1'); } catch (e) {}
+    try {
+      sessionStorage.setItem('ef_intro_seen_rev', introRev);
+      sessionStorage.setItem('ef_intro_seen', '1');
+    } catch (e) {}
   }
 
   function startWipe() {
