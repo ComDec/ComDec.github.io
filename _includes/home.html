@@ -93,13 +93,6 @@
               </div>
             {% endif %}
 
-            {% assign ticker = p.research_ticker | default: p.title %}
-            <div class="ef-marquee" aria-hidden="true">
-              <div class="ef-marquee__track">
-                <span>{{ ticker }}</span>
-                <span aria-hidden="true">{{ ticker }}</span>
-              </div>
-            </div>
           </a>
         {% endfor %}
       {% else %}
