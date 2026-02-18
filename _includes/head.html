@@ -79,7 +79,16 @@
 
 <style>
   /* Prevent intro overlay flashes; shown only when ef-intro-show is set early in <head>. */
-  #theme-endspace #ef-boot { display: none !important; }
+  #theme-endspace #ef-boot {
+    display: none !important;
+    position: fixed;
+    inset: 0;
+    z-index: 220;
+    overflow: hidden;
+    background: #101416;
+    color: rgba(236, 242, 248, 0.92);
+  }
+  #theme-endspace #ef-boot[hidden] { display: none !important; }
   html.ef-intro-show #theme-endspace #ef-boot { display: block !important; }
   html.ef-intro-show { overflow: hidden; }
 </style>
