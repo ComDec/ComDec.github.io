@@ -56,4 +56,48 @@
 })();
 </script>
 
+<script>
+(function() {
+  var lead = document.querySelector('.hero__lead');
+  if (!lead) return;
+
+  var bolds = lead.querySelectorAll('strong, b');
+  if (!bolds.length) return;
+
+  var items = [];
+  bolds.forEach(function(b) {
+    var text = b.textContent;
+    b.textContent = '';
+    var span = document.createElement('span');
+    span.className = 'typed-word';
+    b.appendChild(span);
+    items.push({ span: span, text: text });
+  });
+
+  var idx = 0;
+
+  function typeNext() {
+    if (idx >= items.length) return;
+    var item = items[idx];
+    item.span.classList.add('typed-word--typing');
+    var ci = 0;
+    function tick() {
+      if (ci >= item.text.length) {
+        item.span.classList.remove('typed-word--typing');
+        item.span.classList.add('typed-word--done');
+        idx++;
+        setTimeout(typeNext, 400);
+        return;
+      }
+      item.span.textContent += item.text[ci];
+      ci++;
+      setTimeout(tick, 45);
+    }
+    tick();
+  }
+
+  setTimeout(typeNext, 800);
+})();
+</script>
+
 {% include analytics.html %}

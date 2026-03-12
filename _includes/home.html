@@ -21,7 +21,7 @@
 
       <div class="hero__bio">
         <p>{{ home.hero.eyebrow | markdownify | remove: "<p>" | remove: "</p>" }}.</p>
-        <p>{{ home.hero.lead | markdownify | remove: "<p>" | remove: "</p>" }}</p>
+        <p class="hero__lead">{{ home.hero.lead | markdownify | remove: "<p>" | remove: "</p>" }}</p>
       </div>
 
       {% if home.hero.chips %}
@@ -55,7 +55,7 @@
   {% assign research_pages = site.pages | where_exp: "p", "p.research_area == true" | sort: "research_order" %}
   {% if research_pages.size > 0 %}
   <section class="home-section" id="research">
-    <h2 class="home-section__title">Research</h2>
+    <h2 class="home-section__title"><svg class="sparkle" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6C51 18 53 30 50 50 48 30 47 18 50 6Z"/><path d="M50 94C49 82 48 70 50 50 52 70 53 82 50 94Z"/><path d="M6 50C18 49 30 48 50 50 30 52 18 53 6 50Z"/><path d="M94 50C82 51 70 52 50 50 70 48 82 47 94 50Z"/><path d="M19 19C28 24 37 33 50 50 33 37 24 28 19 19Z"/><path d="M81 81C72 76 63 67 50 50 67 63 76 72 81 81Z"/><path d="M81 19C76 28 67 37 50 50 67 33 76 24 81 19Z"/><path d="M19 81C24 72 33 63 50 50 33 67 24 76 19 81Z"/><path d="M38 8C41 22 44 34 50 50 44 34 39 22 38 8Z"/><path d="M62 92C59 78 56 66 50 50 56 66 61 78 62 92Z"/><path d="M8 62C22 59 34 56 50 50 34 56 22 61 8 62Z"/><path d="M92 38C78 41 66 44 50 50 66 44 78 39 92 38Z"/></svg>Research</h2>
     <div class="home-section__rule"></div>
 
     {% if home.sections.research.blurb %}
@@ -85,7 +85,7 @@
   {% assign featured_pubs = site.publications | where: "featured", true | sort: "date" | reverse %}
   {% if featured_pubs.size > 0 %}
   <section class="home-section" id="publications">
-    <h2 class="home-section__title">Selected Publications</h2>
+    <h2 class="home-section__title"><svg class="sparkle" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6C51 18 53 30 50 50 48 30 47 18 50 6Z"/><path d="M50 94C49 82 48 70 50 50 52 70 53 82 50 94Z"/><path d="M6 50C18 49 30 48 50 50 30 52 18 53 6 50Z"/><path d="M94 50C82 51 70 52 50 50 70 48 82 47 94 50Z"/><path d="M19 19C28 24 37 33 50 50 33 37 24 28 19 19Z"/><path d="M81 81C72 76 63 67 50 50 67 63 76 72 81 81Z"/><path d="M81 19C76 28 67 37 50 50 67 33 76 24 81 19Z"/><path d="M19 81C24 72 33 63 50 50 33 67 24 76 19 81Z"/><path d="M38 8C41 22 44 34 50 50 44 34 39 22 38 8Z"/><path d="M62 92C59 78 56 66 50 50 56 66 61 78 62 92Z"/><path d="M8 62C22 59 34 56 50 50 34 56 22 61 8 62Z"/><path d="M92 38C78 41 66 44 50 50 66 44 78 39 92 38Z"/></svg>Selected Publications</h2>
     <div class="home-section__rule"></div>
 
     <ul class="pub-list">
@@ -111,7 +111,7 @@
 
   {% if site.news and site.news.size > 0 %}
   <section class="home-section" id="news">
-    <h2 class="home-section__title">News</h2>
+    <h2 class="home-section__title"><svg class="sparkle" viewBox="0 0 100 100" fill="currentColor"><path d="M50 6C51 18 53 30 50 50 48 30 47 18 50 6Z"/><path d="M50 94C49 82 48 70 50 50 52 70 53 82 50 94Z"/><path d="M6 50C18 49 30 48 50 50 30 52 18 53 6 50Z"/><path d="M94 50C82 51 70 52 50 50 70 48 82 47 94 50Z"/><path d="M19 19C28 24 37 33 50 50 33 37 24 28 19 19Z"/><path d="M81 81C72 76 63 67 50 50 67 63 76 72 81 81Z"/><path d="M81 19C76 28 67 37 50 50 67 33 76 24 81 19Z"/><path d="M19 81C24 72 33 63 50 50 33 67 24 76 19 81Z"/><path d="M38 8C41 22 44 34 50 50 44 34 39 22 38 8Z"/><path d="M62 92C59 78 56 66 50 50 56 66 61 78 62 92Z"/><path d="M8 62C22 59 34 56 50 50 34 56 22 61 8 62Z"/><path d="M92 38C78 41 66 44 50 50 66 44 78 39 92 38Z"/></svg>News</h2>
     <div class="home-section__rule"></div>
 
     {% assign news_sorted = site.news | sort: "date" | reverse %}

@@ -446,6 +446,49 @@ html.dark #theme-endspace .page__inner-wrap.endspace-frame { background: none !i
 }
 
 
+/* ---- Hand-drawn starburst icon (Claude style) ---- */
+#theme-endspace .sparkle {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.35rem;
+  vertical-align: 0.05em;
+  color: var(--c-accent);
+  animation: sparkle-glow 3s ease-in-out infinite;
+}
+
+@keyframes sparkle-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1) rotate(0deg); }
+  50% { opacity: 0.9; transform: scale(1.12) rotate(14deg); }
+}
+
+/* ---- Bold keyword typing effect ---- */
+#theme-endspace .hero__lead strong,
+#theme-endspace .hero__lead b {
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+#theme-endspace .hero__lead .typed-word {
+  display: inline;
+  border-right: 1.5px solid transparent;
+}
+
+#theme-endspace .hero__lead .typed-word--typing {
+  border-right-color: var(--c-accent);
+  animation: blink-caret 0.55s step-end infinite;
+}
+
+#theme-endspace .hero__lead .typed-word--done {
+  border-right-color: var(--c-accent);
+  animation: blink-caret 0.55s step-end 3;
+}
+
+@keyframes blink-caret {
+  50% { border-color: transparent; }
+}
+
+
 /* ---- Research list ---- */
 #theme-endspace .research-list {
   list-style: none;
