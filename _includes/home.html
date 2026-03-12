@@ -1,164 +1,137 @@
 {% include base_path %}
-
 {% assign home = site.data.home %}
 
-<div class="es-home" id="home">
-  <section class="endspace-frame ef-glass" aria-label="Hero">
+<div class="es-home">
 
-    <div class="es-grid es-grid--2">
-      <div>
-        {% if home.hero.eyebrow %}<p class="tech-text">{{ home.hero.eyebrow }}</p>{% endif %}
-        <h1 class="nier-title">{{ home.hero.headline }}</h1>
-        {% if home.hero.subheadline %}<p class="es-subhead">{{ home.hero.subheadline }}</p>{% endif %}
-        {% if home.hero.lead %}<p class="es-lead">{{ home.hero.lead }}</p>{% endif %}
+  <section class="hero">
+    <div class="hero__portrait">
+      <img class="hero__avatar"
+           src="{{ site.author.avatar | prepend: '/images/' | prepend: base_path }}"
+           alt="{{ site.author.name }}" loading="eager" />
+      <div class="hero__social">
+        {% if site.author.googlescholar %}<a href="{{ site.author.googlescholar }}" title="Google Scholar"><i class="ai ai-google-scholar" aria-hidden="true"></i></a>{% endif %}
+        {% if site.author.github %}<a href="https://github.com/{{ site.author.github }}" title="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>{% endif %}
+        {% if site.author.orcid %}<a href="{{ site.author.orcid }}" title="ORCID"><i class="ai ai-orcid" aria-hidden="true"></i></a>{% endif %}
+        <a href="mailto:{{ site.author.email }}" title="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+      </div>
+    </div>
 
-        {% if home.hero.chips %}
-          <div class="es-row" aria-label="Focus areas">
-            {% for chip in home.hero.chips %}
-              <span class="es-tag">{{ chip }}</span>
-            {% endfor %}
-          </div>
-        {% endif %}
+    <div class="hero__body">
+      <h1 class="hero__name">{{ site.author.name }}</h1>
 
-        {% if home.hero.ctas %}
-          <div class="es-row" aria-label="Quick links">
-            {% for cta in home.hero.ctas %}
-              {% assign cta_url = cta.url %}
-              {% if cta_url contains 'http' %}
-                {% assign cta_href = cta_url %}
-              {% else %}
-                {% assign cta_href = cta_url | prepend: base_path %}
-              {% endif %}
-              <a class="btn" href="{{ cta_href }}">{% if cta.icon %}<i class="{{ cta.icon }}" aria-hidden="true"></i>{% endif %}<span>{{ cta.label }}</span></a>
-            {% endfor %}
-          </div>
-        {% endif %}
+      <div class="hero__bio">
+        <p>{{ home.hero.eyebrow | markdownify | remove: "<p>" | remove: "</p>" }}.</p>
+        <p>{{ home.hero.lead | markdownify | remove: "<p>" | remove: "</p>" }}</p>
+      </div>
 
-        <div class="spectrum-bar" aria-hidden="true" style="margin: 1rem 0;"></div>
-
-        <div class="es-grid es-grid--cards" aria-label="At a glance">
-          <div class="endspace-card">
-            <div class="tech-text">Affiliation</div>
-            <div class="es-strong">{{ site.author.employer }}</div>
-          </div>
-          <div class="endspace-card">
-            <div class="tech-text">Email</div>
-            <div class="es-strong"><a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></div>
-          </div>
-          <div class="endspace-card">
-            <div class="tech-text">Google Scholar</div>
-            <div class="es-strong"><a href="{{ site.author.googlescholar }}">Profile</a></div>
-          </div>
-          <div class="endspace-card">
-            <div class="tech-text">GitHub</div>
-            <div class="es-strong"><a href="https://github.com/{{ site.author.github }}">@{{ site.author.github }}</a></div>
-          </div>
+      {% if home.hero.chips %}
+        <div class="hero__interests">
+          {% for chip in home.hero.chips %}
+            <span class="hero__chip">{{ chip }}</span>
+          {% endfor %}
         </div>
-      </div>
+      {% endif %}
 
-      <div class="endspace-card es-portrait ef-float" aria-label="Portrait">
-        <div class="es-badge">ID</div>
-        <img class="es-portrait__img" src="{{ site.author.avatar | prepend: '/images/' | prepend: base_path }}" alt="{{ site.author.name }}" loading="eager" />
-        <div class="es-portrait__cap"><span class="tech-text">STATUS</span> Active research on diffusion + LLMs for science</div>
+      {% if home.hero.ctas %}
+        <div class="hero__actions">
+          {% for cta in home.hero.ctas %}
+            {% assign cta_url = cta.url %}
+            {% if cta_url contains 'http' %}{% assign cta_href = cta_url %}{% else %}{% assign cta_href = cta_url | prepend: base_path %}{% endif %}
+            <a class="btn" href="{{ cta_href }}">
+              {% if cta.icon %}<i class="{{ cta.icon }}" aria-hidden="true"></i>{% endif %}
+              <span>{{ cta.label }}</span>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="hero__contact">
+        {{ site.author.employer }} · {{ site.author.location }}<br>
+        <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
       </div>
     </div>
   </section>
 
-  <section id="research" aria-label="Research" style="margin-top: 1.6rem;">
-    <div class="endspace-frame" style="margin-bottom: 1rem;">
-      <div class="tech-text">SECTION</div>
-      <h2 style="margin: 0.35rem 0 0;">{{ home.sections.research.title }}</h2>
-      {% if home.sections.research.blurb %}<p class="es-lead" style="margin-top: 0.6rem;">{{ home.sections.research.blurb }}</p>{% endif %}
-    </div>
+  {% assign research_pages = site.pages | where_exp: "p", "p.research_area == true" | sort: "research_order" %}
+  {% if research_pages.size > 0 %}
+  <section class="home-section" id="research">
+    <h2 class="home-section__title">Research</h2>
+    <div class="home-section__rule"></div>
 
-    {% assign research_pages = site.pages | where_exp: "p", "p.research_area == true" | sort: "research_order" %}
+    {% if home.sections.research.blurb %}
+      <p class="home-section__desc">{{ home.sections.research.blurb }}</p>
+    {% endif %}
 
-    <div class="es-grid es-grid--cards">
-      {% if research_pages and research_pages.size > 0 %}
-        {% for p in research_pages %}
-          <a class="endspace-card es-area" href="{{ p.url | prepend: base_path }}" aria-label="Open: {{ p.title }}">
-            <div class="es-badge">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
-            {% if p.research_image %}
-              <div class="es-media" aria-hidden="true">
-                <img src="{{ p.research_image | prepend: base_path }}" alt="" loading="lazy" />
-              </div>
+    <ul class="research-list">
+      {% for p in research_pages %}
+        <li class="research-item">
+          <a href="{{ p.url | prepend: base_path }}">
+            <div class="research-item__title">{{ p.title }}</div>
+            {% if p.research_card_description %}
+              <div class="research-item__desc">{{ p.research_card_description }}</div>
             {% endif %}
-            <h3 style="margin: 0.75rem 0 0;">{{ p.title }}</h3>
-            {% if p.research_card_description %}<p class="es-lead" style="margin-top: 0.55rem;">{{ p.research_card_description }}</p>{% endif %}
             {% if p.research_tags %}
-              <div class="es-row" aria-label="Keywords" style="margin-top: 0.7rem;">
-                {% for t in p.research_tags %}
-                  <span class="es-tag">{{ t }}</span>
-                {% endfor %}
+              <div class="research-item__tags">
+                {% for t in p.research_tags %}<span class="tag">{{ t }}</span>{% endfor %}
               </div>
             {% endif %}
-
           </a>
-        {% endfor %}
-      {% else %}
-        {% for area in home.sections.research.areas %}
-          <article class="endspace-card">
-            <div class="es-badge">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
-            {% if area.image %}
-              <div class="es-media" aria-hidden="true">
-                <img src="{{ area.image | prepend: base_path }}" alt="" loading="lazy" />
-              </div>
-            {% endif %}
-            <h3 style="margin: 0.75rem 0 0;">{{ area.title }}</h3>
-            {% if area.description %}<p class="es-lead" style="margin-top: 0.55rem;">{{ area.description }}</p>{% endif %}
-            {% if area.tags %}
-              <div class="es-row" aria-label="Keywords" style="margin-top: 0.7rem;">
-                {% for t in area.tags %}
-                  <span class="es-tag">{{ t }}</span>
-                {% endfor %}
-              </div>
-            {% endif %}
-          </article>
-        {% endfor %}
-      {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% assign featured_pubs = site.publications | where: "featured", true | sort: "date" | reverse %}
+  {% if featured_pubs.size > 0 %}
+  <section class="home-section" id="publications">
+    <h2 class="home-section__title">Selected Publications</h2>
+    <div class="home-section__rule"></div>
+
+    <ul class="pub-list">
+      {% for pub in featured_pubs %}
+        <li class="pub-entry">
+          <a href="{{ pub.url | prepend: base_path }}">
+            {% if pub.venue %}<span class="pub-entry__venue">{{ pub.venue }}</span>{% endif %}
+            <div class="pub-entry__title">{{ pub.title }}</div>
+            {% if pub.excerpt %}<div class="pub-entry__excerpt">{{ pub.excerpt | markdownify | remove: "<p>" | remove: "</p>" | truncatewords: 30 }}</div>{% endif %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div style="margin-top: 1.25rem;">
+      <a class="btn" href="{{ base_path }}/publications/">
+        <i class="fa-solid fa-arrow-right" aria-hidden="true" style="font-size: 0.7em;"></i>
+        <span>All publications</span>
+      </a>
     </div>
   </section>
+  {% endif %}
 
-  <section id="news" aria-label="News" style="margin-top: 1.6rem;">
-    <div class="endspace-frame" style="margin-bottom: 1rem;">
-      <div class="tech-text">SECTION</div>
-      <h2 style="margin: 0.35rem 0 0;">{{ home.sections.news.title }}</h2>
-    </div>
+  {% if site.news and site.news.size > 0 %}
+  <section class="home-section" id="news">
+    <h2 class="home-section__title">News</h2>
+    <div class="home-section__rule"></div>
 
-    <div class="endspace-frame ef-glass">
-      {% if site.news and site.news.size > 0 %}
-        {% assign news_sorted = site.news | sort: "date" | reverse %}
-        {% capture news_year %}None{% endcapture %}
-        {% for u in news_sorted %}
-          {% capture y %}{{ u.date | default: "1900-01-01" | date: "%Y" }}{% endcapture %}
-          {% if y != news_year %}
-            <h3 class="archive__subtitle" style="margin-top: 1rem;">{{ y }}</h3>
-            {% capture news_year %}{{ y }}{% endcapture %}
-          {% endif %}
+    {% assign news_sorted = site.news | sort: "date" | reverse %}
+    {% capture news_year %}None{% endcapture %}
 
-          <div class="endspace-card ef-interactive" style="margin-top: 0.75rem;">
-            <div class="tech-text">{{ u.date | default: "1900-01-01" | date: "%Y-%m" }}</div>
-            <div style="margin-top: 0.35rem;">
-              {% if u.title %}
-                {% if u.link %}
-                  <a href="{{ u.link }}">{{ u.title }}</a>
-                {% else %}
-                  {{ u.title }}
-                {% endif %}
-              {% else %}
-                {{ u.content | remove: "<p>" | remove: "</p>" }}
-              {% endif %}
-            </div>
-          </div>
-        {% endfor %}
-      {% else %}
-        {% for u in home.sections.news.items %}
-          <div class="endspace-card ef-interactive" style="margin-top: 0.75rem;">
-            <div class="tech-text">{{ u.date }}</div>
-            <div style="margin-top: 0.35rem;">{{ u.text }}</div>
-          </div>
-        {% endfor %}
+    {% for u in news_sorted %}
+      {% capture y %}{{ u.date | default: "1900-01-01" | date: "%Y" }}{% endcapture %}
+      {% if y != news_year %}
+        <div class="news-year-heading">{{ y }}</div>
+        {% capture news_year %}{{ y }}{% endcapture %}
       {% endif %}
-    </div>
+
+      <div class="news-entry">
+        <span class="news-entry__date">{{ u.date | default: "1900-01-01" | date: "%m" }}.{{ u.date | default: "1900-01-01" | date: "%d" }}</span>
+        <span class="news-entry__text">
+          {% if u.link %}<a href="{{ u.link }}">{{ u.title }}</a>{% else %}{{ u.title }}{% endif %}
+        </span>
+      </div>
+    {% endfor %}
   </section>
+  {% endif %}
+
 </div>
