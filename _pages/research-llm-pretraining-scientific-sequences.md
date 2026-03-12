@@ -1,18 +1,15 @@
 ---
 layout: single
-title: "LLM Pretraining for Scientific Sequences"
-permalink: /research/llm-pretraining-scientific-sequences/
+title: "Generative Models for Biological Sequences"
+permalink: /research/generative-models-biological-sequences/
 author_profile: false
-section_icon: operator
 research_area: true
 research_order: 20
-research_image: /images/thumbs/llm.svg
-research_card_description: "Pretraining and adaptation for chemical languages and biological sequences (DNA/RNA/protein)."
+research_card_description: "Generating DNA, RNA, and protein sequences that satisfy biophysical constraints — folding stability, binding affinity, and functional activity."
 research_tags:
-  - pretraining
-  - foundation models
-  - scientific tokens
-research_ticker: "LLM PRETRAINING • SCIENTIFIC SEQUENCES • TOKENS • CHEMISTRY • RNA • PROTEIN"
+  - RNA
+  - protein design
+  - biophysical constraints
 ---
 
 {% include base_path %}
@@ -24,14 +21,6 @@ research_ticker: "LLM PRETRAINING • SCIENTIFIC SEQUENCES • TOKENS • CHEMIS
 
 ## Overview
 
-Pretraining and adaptation for chemical languages and biological sequences (DNA/RNA/protein).
+Biological sequence design requires generation that respects the physical laws governing molecular structure and function. I study how to incorporate **biophysical constraints** — thermodynamic stability, stereochemistry, binding geometry — into generative models (diffusion, autoregressive, flow-based) for molecules, RNA, and proteins, so that designed sequences are not just plausible but experimentally viable.
 
-## Topics
-
-* pretraining
-* foundation models
-* scientific tokens
-
-## Notes
-
-Write your research summary here in Markdown.
+This involves encoding 3D structural constraints into sequence-level models, steering generation toward desired properties in data-scarce regimes, and developing pretraining strategies that help foundation models internalize the physical rules of biology.

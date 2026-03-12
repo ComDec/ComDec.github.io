@@ -1,18 +1,15 @@
 ---
 layout: single
-title: "Post-training with GFlowNet / RL"
-permalink: /research/post-training-gflownet-rl/
+title: "Constrained Generative Models for Robotic Learning"
+permalink: /research/constrained-generative-models-robotics/
 author_profile: false
-section_icon: operator
 research_area: true
 research_order: 30
-research_image: /images/thumbs/gflownet.svg
-research_card_description: "Stabilizing autoregressive GFlowNets and aligning generation with scientific objectives."
+research_card_description: "Learning robotic policies with safety and physics constraints — integrating environment dynamics into generative planning and control."
 research_tags:
-  - trajectory balance
-  - post-training
-  - RL
-research_ticker: "POST-TRAINING • GFLOWNET • RL • OBJECTIVES • STABILITY • CONTROL"
+  - robotics
+  - policy learning
+  - safety constraints
 ---
 
 {% include base_path %}
@@ -24,14 +21,6 @@ research_ticker: "POST-TRAINING • GFLOWNET • RL • OBJECTIVES • STABILITY
 
 ## Overview
 
-Stabilizing autoregressive GFlowNets and aligning generation with scientific objectives.
+Robotic systems must generate actions that satisfy hard physical constraints — joint limits, collision avoidance, contact dynamics — while remaining adaptive to novel environments. I study how **generative models can serve as constrained policy learners**, combining the expressiveness of diffusion and flow-based planners with the guarantees needed for safe real-world deployment.
 
-## Topics
-
-* trajectory balance
-* post-training
-* RL
-
-## Notes
-
-Write your research summary here in Markdown.
+This includes incorporating kinematic and dynamic constraints into diffusion-based planners, composing safety constraints with reward-driven objectives, and enabling generative planning to transfer across embodiments.

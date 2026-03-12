@@ -1,18 +1,15 @@
 ---
 layout: single
-title: "Diffusion for Molecular Design"
-permalink: /research/diffusion-molecular-design/
+title: "Generative Models for Language"
+permalink: /research/generative-models-language/
 author_profile: false
-section_icon: operator
 research_area: true
 research_order: 10
-research_image: /images/thumbs/diffusion.svg
-research_card_description: "Data-scarce generation, stereochemistry control, and structure-aware guidance."
+research_card_description: "Controllable text generation with structural and semantic constraints — from decoding-time guidance to constrained fine-tuning."
 research_tags:
-  - classifier guidance
-  - stereochemistry
-  - 3D
-research_ticker: "DIFFUSION • MOLECULAR DESIGN • STEREOCHEMISTRY • GUIDANCE • DATA-SCARCE"
+  - LLMs
+  - constrained decoding
+  - controllable generation
 ---
 
 {% include base_path %}
@@ -24,14 +21,6 @@ research_ticker: "DIFFUSION • MOLECULAR DESIGN • STEREOCHEMISTRY • GUIDANC
 
 ## Overview
 
-Data-scarce generation, stereochemistry control, and structure-aware guidance.
+Large language models generate fluently but often ignore hard constraints — format requirements, factual grounding, logical consistency, safety boundaries. My work investigates how to **inject constraints directly into the generation process** rather than relying on post-hoc filtering, through techniques spanning decoding-time guidance, constrained fine-tuning, and reward-shaped post-training.
 
-## Topics
-
-* classifier guidance
-* stereochemistry
-* 3D
-
-## Notes
-
-Write your research summary here in Markdown.
+This includes enforcing structural constraints (syntax, format, schema) at decoding time without degrading fluency, balancing hard constraints with soft preferences, and understanding how these methods scale.

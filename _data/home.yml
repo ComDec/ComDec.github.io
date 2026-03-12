@@ -1,13 +1,14 @@
 hero:
-  eyebrow: "CS PhD student @ NYU Courant / NYU Shanghai"
-  headline: "Generative Models for Scientific Discovery"
-  subheadline: "Diffusion, LLM pretraining, and post-training with GFlowNet/RL"
-  lead: "I work on generative modeling for molecules, RNA, and proteins. My goal is to build reliable, controllable models that respect scientific constraints."
+  eyebrow: "CS PhD student @ NYU, advised by [Shengjie Wang](https://sheng-jie-wang.github.io/)"
+  headline: "Generative Models under Constraints"
+  subheadline: "Language, biological sequences, and robotic learning"
+  lead: "I build **generative models** that don't just produce fluent outputs — they respect the **structural, physical, and scientific rules** of each domain. My research spans language, biological sequences, and robotics, with a shared focus on generating expressively while staying grounded in reality."
   chips:
-    - "Diffusion"
-    - "LLMs"
-    - "GFlowNet / RL"
-    - "AI for Science"
+    - "Generative Models"
+    - "Language"
+    - "Biological Sequences"
+    - "Robotic Learning"
+    - "Constraints"
   ctas:
     - label: "CV (PDF)"
       url: "/References/resume.pdf"
@@ -25,7 +26,7 @@ hero:
 sections:
   research:
     title: "Research"
-    blurb: "I'm interested in building foundation models and generative systems that can be controlled and trusted in scientific domains."
+    blurb: "My work explores incorporating structural, physical, and scientific constraints into generative models across multiple domains — making generation both expressive and grounded."
     areas: []
 
   news:
