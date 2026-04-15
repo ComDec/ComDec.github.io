@@ -2,7 +2,7 @@ hero:
   eyebrow: "CS PhD student @ NYU, advised by [Shengjie Wang](https://sheng-jie-wang.github.io/)"
   headline: "Generative Models under Constraints"
   subheadline: "Language, biological sequences, and robotic learning"
-  lead: "I build **generative models** that don't just produce fluent outputs — they respect the **formal, physical, and scientific constraints** of each domain. My research spans language, biological sequences, and robotics, with a shared focus on generating expressively while staying grounded in reality."
+  lead: "I build **generative models** for language, biological sequences, chemistry, and robotics. I believe a good generative model should generate under **formal and physical constraints**, follow instructions faithfully rather than improvise, and produce outputs that are **grounded in reality** — valid molecules, foldable proteins, feasible robotic actions. My research explores how to make this possible across domains."
   chips:
     - "Generative Models"
     - "Language"
