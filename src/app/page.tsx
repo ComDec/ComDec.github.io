@@ -34,8 +34,8 @@ export default function HomePage() {
                 including <strong>LLM post-training</strong>, <strong>diffusion models for drug
                 discovery</strong>, and <strong>foundation models for RNA, proteins, and
                 antibodies</strong>. My long-term goal is to build AI systems that accelerate the
-                discovery of new therapies and, ultimately, help cure disease and improve human
-                health.
+                discovery of new therapies and, ultimately, help cure disease and extend human
+                lifespan.
               </p>
             </div>
             <div className="intro-actions">
